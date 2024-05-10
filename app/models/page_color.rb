@@ -1,0 +1,2 @@
+class PageColor < ApplicationRecord
+end
