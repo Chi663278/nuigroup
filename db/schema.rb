@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 2024_05_10_140727) do
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "post_id", null: false
     t.integer "user_id", null: false
-    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2024_05_10_140727) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["screen_name"], name: "index_users_on_screen_name", unique: true
   end
 
 end
