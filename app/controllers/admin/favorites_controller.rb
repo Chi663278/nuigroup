@@ -1,4 +1,5 @@
 class Admin::FavoritesController < ApplicationController
+  before_action :authenticate_admin!
   def user_favs
   end
 

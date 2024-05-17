@@ -1,4 +1,9 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user! 
+
+  def timeline
+  end
+
   def index
   end
 
