@@ -36,7 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name,              null: false, default: ""
       t.string :screen_name,       null: false, default: ""
       t.text :bio,                              default: ""
-      t.string :page_color_id,     null: false
 
 
       t.timestamps null: false
