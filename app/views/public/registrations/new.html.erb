@@ -1,7 +1,18 @@
-<h2>Sign up</h2>
+<h2>Sign up page</h2>
+<h3>あなたの情報を入力してください</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
+<%= form_with model: @user, url: registration_path(resource_name), local: true do |f| %>
+  <%= render 'public/shared/error_messages', resource: @user %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name（後から変更可能です" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :screen_name %><br />
+    <%= f.text_field :screen_name, autofocus: true, autocomplete: "あなたの希望するID ( 半角英数字・半角記号 )" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -13,17 +24,19 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "password(確認)" %>
   </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+
+<h2><%= link_to "→Log in", new_user_session_path %></h2>
 
 <%= render "public/shared/links" %>
