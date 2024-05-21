@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :follows, dependent: :destroy
   has_many :page_colors
+  has_one_attached :image
 
   # フォローしている人
   has_many :relationships
