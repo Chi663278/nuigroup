@@ -1,5 +1,5 @@
-<h2>Log in page</h2>
-<h3>IDとパスワードを入力</h3>
+<h1>Log in page</h1>
+<h4>IDとパスワードを入力</h4>
 
 
 <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
@@ -26,4 +26,3 @@
 <% end %>
 
 <h2><%= link_to "→Sign up", new_user_registration_path %></h2>
-<%= render "public/shared/links" %>
