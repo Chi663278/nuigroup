@@ -1,23 +1,21 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :set_current_user
 
   def timeline
     @posts = Post.where(user_id: [current_user.id, *current_user.following_ids])
   end
 
   def index
-    @posts = Post.where(params[:screen_name])
+    @posts = Post.where(params[:id])
   end
 
   def edit
-    @user = User.find(params[:screen_name])
   end
 
   def update
-    @user = User.find(params[:screen_name])
     @user.update(user_params)
-    redirect_to timeline_path(@user.screen_name)
+    redirect_to timeline_path(@user.id)
   end
 
   private
@@ -26,10 +24,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :image)
   end
 
-  def is_matching_login_user
-    user = User.find(params[:screen_name])
-    unless user.screen_name == current_user.screen_name
-      redirect_to user_timeline_path
-    end
+  def set_current_user
+    @user = current_user
   end
 end
