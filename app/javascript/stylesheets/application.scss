@@ -15,7 +15,7 @@ body {
 
 header {
   width: 100%;
-  height: 120px;
+  height: 190px;
   display: flex;
   background-color: #8A456C;
   color: #FFFFFF;
@@ -68,6 +68,7 @@ h1 {
 
 .login-user {
   font-size: 16px;
+  margin-bottom: 0;
 }
 
 h1,.form-label-s,.jump,.login-user {
@@ -117,6 +118,13 @@ h1,.form-label-s,.jump,.login-user {
 }
 
 .btn-light-s {
+  width: 130px;
+  height: 50px;
+  padding: 10px 10px;
+  font-size: 16px;
+}
+
+.btn-light-m {
   padding: 20px 20px;
   font-size: 23px;
 }
@@ -124,6 +132,11 @@ h1,.form-label-s,.jump,.login-user {
 .btn-light-l {
   padding: 30px 30px;
   font-size: 40px;
+}
+
+.btn-light-post {
+  padding: 0 35px;
+  font-size: 100px;
 }
 
 .btn-light:hover, .btn-light:focus,
