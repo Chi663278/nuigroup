@@ -21,7 +21,7 @@
       <div class="menubar">
         <ul class="menu-list">
           <% if admin_signed_in? %>
-            <li class="menu-list-item"><%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: "btn btn-light" %></li>
+            <li class="menu-list-item"><%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: "btn btn-light btn-light-s" %></li>
             <li class="menu-list-item">
               <p>administrator</p>
               <p>id: <%= @current_admin.id %></p>
@@ -39,11 +39,11 @@
                 <%= image_tag 'noimage.png', size: "100x100", class: "rounded" %>
               <% end %>
             </li>
-            <li class="menu-list-item"><%= link_to 'Edit profile', user_edit_path, class: "btn btn-light" %></li>
-            <li class="menu-list-item"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light" %></li>
+            <li class="menu-list-item"><%= link_to 'Edit profile', user_edit_path, class: "btn btn-light btn-light-s" %></li>
+            <li class="menu-list-item"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light btn-light-s" %></li>
           <% else %>
-            <li class="menu-list-item"><%= link_to 'Sign up', new_user_registration_path, class: "btn btn-light" %></li>
-            <li class="menu-list-item"><%= link_to 'Log in', new_user_session_path, class: "btn btn-light" %></button></li>
+            <li class="menu-list-item"><%= link_to 'Sign up', new_user_registration_path, class: "btn btn-light btn-light-s" %></li>
+            <li class="menu-list-item"><%= link_to 'Log in', new_user_session_path, class: "btn btn-light btn-light-s" %></button></li>
           <% end %>
         </ul>
       </div>

@@ -2,6 +2,8 @@
 <h4>IDとパスワードを入力</h4>
 <section id="input">
   <div class="inner">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
 
       <div class="field">
@@ -22,7 +24,7 @@
       <% end %>
 
       <div class="actions text-center">
-        <%= f.submit "Log in", class: "btn btn-light" %>
+        <%= f.submit "Log in", class: "btn btn-light btn-light-s" %>
       </div>
     <% end %>
 

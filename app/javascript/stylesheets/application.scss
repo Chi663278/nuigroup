@@ -108,12 +108,22 @@ h1,.form-label-s,.jump,.login-user {
 }
 
 .btn-light {
-  padding: 20px 20px;
+  font-family: Georgia, serif;
+  font-style: italic;
   border-radius: 10px;
   background: #C77B9F;
   border: 3px solid #C77B9F;
   color: #FFFFFF;
+}
+
+.btn-light-s {
+  padding: 20px 20px;
   font-size: 23px;
+}
+
+.btn-light-l {
+  padding: 30px 30px;
+  font-size: 40px;
 }
 
 .btn-light:hover, .btn-light:focus,

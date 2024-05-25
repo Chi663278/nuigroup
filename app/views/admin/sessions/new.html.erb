@@ -1,17 +1,19 @@
+<h1>Log in page</h1>
+<h4>メールアドレスとパスワードを入力</h4>
 <section id="input">
   <div class="inner">
-    <h1>Log in page</h1>
-    <h4>メールアドレスとパスワードを入力</h4>
-
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
+    
       <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.label :email, class: "form-label" %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control mb-3", autofocus: true, placeholder: "email" %>
       </div>
 
       <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.label :password, class: "form-label" %><br />
+        <%= f.password_field :password, class: "form-control mb-3", autofocus: true, placeholder: "password" %>
       </div>
 
       <% if devise_mapping.rememberable? %>
@@ -21,8 +23,8 @@
         </div>
       <% end %>
 
-      <div class="actions">
-        <%= f.submit "Log in" %>
+      <div class="actions text-center">
+        <%= f.submit "Log in", class: "btn btn-light btn-light-s"%>
       </div>
     <% end %>
   </div>
