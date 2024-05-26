@@ -33,11 +33,7 @@
               <% end %>
             </li>
             <li class="menu-list-item">
-              <% if @current_user.image.attached? %>
-                <%= image_tag @current_user.image, size: "100x100", class: "rounded" %>
-              <% else %>
-                <%= image_tag 'noimage.png', size: "100x100", class: "rounded" %>
-              <% end %>
+              <%= image_tag @current_user.get_user_image(100,100),class: "rounded shadow mb-3" %>
               <p class="login-user text-center">user: <%= @current_user.name %></p>
               <p class="login-user text-center">id: <%= @current_user.screen_name %></p>
             </li>

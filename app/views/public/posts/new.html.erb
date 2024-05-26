@@ -1,2 +1,30 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<section id="input">
+  <div class="inner-white">
+    <h1>New post</h1>
+    <div class="text-center">
+      <p class="login-user">user: <%= @user.name %> / ID: <%= @user.screen_name %></p>
+      <p class="notice"><%= notice %></p>
+    </div>
+
+    <%= form_with model: @post do |f| %>
+    
+      <div class="field">
+        <%= f.label :image, class: "form-label" %>
+        <%= f.file_field :image, class: "mb-3", accept: "image/*" %>
+      </div>
+
+      <div class="field">
+      <%= f.label :caption, class: "form-label" %>
+      <%= f.text_area :caption, class: "form-control mb-3", autofocus: true, placeholder: "説明文を追加してください(空欄可)" %>
+      </div>
+
+      <div class="actions text-center">
+        <%= f.submit "Save", class: "btn btn-light btn-light-s" %>
+      </div>
+    <% end %>
+
+  </div>
+</section>
+
+
+

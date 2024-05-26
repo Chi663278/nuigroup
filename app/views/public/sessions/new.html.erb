@@ -1,5 +1,6 @@
 <h1>Log in page</h1>
 <h4>IDとパスワードを入力</h4>
+
 <section id="input">
   <div class="inner">
     <p class="notice"><%= notice %></p>
@@ -7,13 +8,13 @@
     <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>
 
       <div class="field">
-        <%= f.label :screen_name, class: "form-label" %><br />
-        <%= f.text_field :screen_name, class: "form-control mb-3", autofocus: true, autocomplete: " ID " %>
+        <label class="form-label">ID</label>
+        <%= f.text_field :screen_name, class: "form-control mb-3", autofocus: true, placeholder: " ID " %>
       </div>
 
       <div class="field">
         <%= f.label :password, class: "form-label" %><br />
-        <%= f.password_field :password, class: "form-control mb-3", autocomplete: "password" %>
+        <%= f.password_field :password, class: "form-control mb-3", placeholder: "password" %>
       </div>
 
       <% if devise_mapping.rememberable? %>

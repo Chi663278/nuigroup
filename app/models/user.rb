@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :registerable,
          :recoverable, :rememberable, :validatable,
          :database_authenticatable
-    
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -22,13 +22,13 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :screen_name, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9\p{Punct}]+\z/ }, length: { maximum: 10}
   validates :bio, length: { maximum: 500 }
-  
+
   def following?(another_user)
     self.followings.include?(another_user)
   end
 
   def follow(another_user)
-    unless self == another_user      
+    unless self == another_user
       self.relationships.find_or_create_by(follow_id: another_user.id)
     end
   end
@@ -38,5 +38,13 @@ class User < ApplicationRecord
       relationship = self.relationships.find_by(follow_id: another_user.id)
       relationship.destroy if relationship
     end
+  end
+
+  def get_user_image(width, height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/noimage.png')
+      image.attach(io: File.open(file_path), filename: 'noimage.jpg', content_type: 'image/png')
+    end
+    image.variant(resize_to_limit: [width, height]).processed
   end
 end
