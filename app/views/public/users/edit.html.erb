@@ -12,7 +12,7 @@
 
       <div class="field">
         <%= f.label :image, class: "form-label" %>
-        <%= f.file_field :image, class: "mb-3", accept: "image/*" %>
+        <span class="btn btn-file btn-info mb-3"><%= f.file_field :image, accept: "image/*" %>画像選択</span>
       </div>
 
       <div class="field">

@@ -6,6 +6,21 @@
   box-sizing: border-box;
   z-index: 1;
   position: relative;
+  
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #8A456C;
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #E6D0DE;
+    border-radius: 5px;
+  }
 }
 
 body {
@@ -168,6 +183,31 @@ h1,.form-label-s,.jump,.login-user {
 .btn-light.outline {
   border: 3px solid #C77B9F;
   color: #FFFFFF;
+}
+
+.btn-file {
+  border: 3px solid #C77B9F;
+  background: #C77B9F;
+  overflow: hidden;
+  position: relative;
+  input[type=file] {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 100px;
+    text-align: right;
+    opacity: 0;
+
+    filter: alpha(opacity=0);
+  }
+}
+
+.btn-file:hover {
+  border: 3px solid #E6D0DE;
+  background: #E6D0DE;
 }
 
 a {

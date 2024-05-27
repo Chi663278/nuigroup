@@ -8,6 +8,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id #データの保存用
     if @post.save
       redirect_to timeline_path(@post), notice: 'ポストを投稿しました。'
     else
