@@ -1,2 +1,10 @@
-<h1>Public::Homes#timeline</h1>
-<p>Find me in app/views/public/homes/timeline.html.erb</p>
+<h1>Timeline</h1>
+<% @posts.each do |post| %>
+  <%= link_to user_timeline_path do %>
+    <%= image_tag post.user.get_user_image(100,100), class: "shadow" %>
+  <% end %>
+  <%= post.user.name %>
+  <%= image_tag post.get_post_image(500,500), class: "shadow mb-3" %>
+  
+<% end %>
+

@@ -33,6 +33,6 @@ class Public::PostsController < ApplicationController
   end
 
   def set_current_user
-    @user = current_user
+    @current_user = current_user
   end
 end

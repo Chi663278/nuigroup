@@ -2,7 +2,7 @@
   <div class="inner-white">
     <h1>New post</h1>
     <div class="text-center">
-      <p class="login-user">user: <%= @user.name %> / ID: <%= @user.screen_name %></p>
+      <p class="login-user">user: <%= @current_user.name %> / ID: <%= @current_user.screen_name %></p>
       <p class="notice"><%= notice %></p>
     </div>
 
@@ -11,7 +11,7 @@
       <div class="field">
         <%= f.label :image, class: "form-label" %>
         <span class="btn btn-file btn-info"><%= f.file_field :image, class: "mb-3", accept: "image/*" %>画像選択</span>
-        <div class="text-center"><%= image_tag (@post.image.attached? ? @post.image : 'noimage.png'), id: "img_prev", class: "shadow mb-3" %></div>
+        <div class="text-center"><%= image_tag (@post.image.attached? ? @post.image : 'noimage.png'), class: "shadow mb-3" %></div>
       </div>
 
       <div class="field">

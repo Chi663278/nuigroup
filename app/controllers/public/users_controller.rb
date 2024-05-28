@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :set_current_user
 
   def timeline
-    @posts = Post.where(user_id: [current_user.id, *current_user.following_ids])
+    @posts = Post.where(user_id: current_user.id).includes(:user).order("created_at DESC")
   end
 
   def index
