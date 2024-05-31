@@ -3,9 +3,8 @@ class Public::UsersController < ApplicationController
   before_action :set_current_user
 
   def index
-    @posts = Post.where(user_id: @user.id).includes(:user).order("created_at DESC")
-    @screen_name = User.find(params[:post_id]).screen_name
-
+    user_ids = @user.followings.includes(:id) + [@user.id]
+    @posts = Post.where(user_id: user_ids).order(created_at: :desc)
   end
 
   def show
