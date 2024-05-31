@@ -2,12 +2,14 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_user
 
-  def timeline
-    @posts = Post.where(user_id: current_user.id).includes(:user).order("created_at DESC")
+  def index
+    @posts = Post.where(user_id: @user.id).includes(:user).order("created_at DESC")
+    @screen_name = User.find(params[:post_id]).screen_name
+
   end
 
-  def index
-    @posts = Post.where(params[:id])
+  def show
+
   end
 
   def edit

@@ -27,8 +27,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
-    get 'TL' => 'users#timeline', as: 'timeline'
-    get ':screen_name' => 'users#index', as: 'user_timeline'
+    get 'TL' => 'users#index', as: 'timeline'
+    get ':screen_name' => 'users#show', as: 'user_timeline'
     get 'user/edit' => 'users#edit'
     patch 'user' => 'users#update'
     resources :posts, only: [:new, :create]
