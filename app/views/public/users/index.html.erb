@@ -1,12 +1,23 @@
 <p class="notice"><%= notice %></p>
-<h1>Timeline</h1>
-<% @posts.each do |post| %>
-  <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
-    <%= image_tag post.user.get_user_image(100,100), class: "shadow" %>
-  <% end %>
-  <p><%= post.user.name %> / <%= post.user.screen_name %></p>
-  <%= link_to 'delete', delete_post_path(post), method: :patch, data: { confirm: '本当に削除しますか？' } %>
-  <%= image_tag post.get_post_image(500,500), class: "shadow mb-3" %>
-  <%= post.caption %>
-<% end %>
+<section id="input">
+  <h1>Timeline</h1>
 
+    <% @posts.each do |post| %>
+      <div class="inner-white-l">
+        <div>
+          <p class="author mb-2">user: <%= post.user.name %> / id: <%= post.user.screen_name %></p>
+          <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
+            <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
+          <% end %>
+        </div>
+        <div class="text-center">
+          <% if post.user == current_user %>
+            <%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+          <% end %>
+          <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
+          <p><%= post.caption %></p>
+        </div>
+      </div>
+    <% end %>
+
+</section>

@@ -31,8 +31,7 @@ Rails.application.routes.draw do
     get '/:screen_name' => 'users#show', as: 'user_timeline'
     get 'user/edit' => 'users#edit'
     patch 'user' => 'users#update'
-    resources :posts, only: [:new, :create]
-    patch 'posts/:id' => 'posts#update', as: 'delete_post'
+    resources :posts, only: [:new, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
     resources :comments, only: [:new, :create]
     patch 'comments/:id' => 'comments#update', as: 'delete_comment'
