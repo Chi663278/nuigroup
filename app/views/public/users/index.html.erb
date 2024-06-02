@@ -23,7 +23,7 @@
 
         <div class="text-right">
           <% if user_signed_in? %>
-            <p><%= link_to 'comment', new_comment_path(post), class: "btn btn-light btn-light-ss" %></p>
+            <p><%= link_to 'comment', new_post_comment_path(post), class: "btn btn-light btn-light-ss" %></p>
           <% end %>
         </div>
 
@@ -39,7 +39,7 @@
             <p>
               <%= comment.comment %>
               <% if comment.user == current_user %>
-                <p><%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
+                <p><%= link_to 'delete', post_comment_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
               <% end %>
             </p>
           </div>
