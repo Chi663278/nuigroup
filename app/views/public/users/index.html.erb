@@ -4,6 +4,11 @@
 
     <% @posts.each do |post| %>
       <div class="inner-white-l">
+        <div class="text-right">
+          <% if post.user == current_user %>
+            <p><%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
+          <% end %>
+        </div>
         <div>
           <p class="author mb-2">user: <%= post.user.name %> / id: <%= post.user.screen_name %></p>
           <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
@@ -11,9 +16,6 @@
           <% end %>
         </div>
         <div class="text-center">
-          <% if post.user == current_user %>
-            <%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-          <% end %>
           <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
           <p><%= post.caption %></p>
         </div>
