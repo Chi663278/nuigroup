@@ -24,7 +24,7 @@
             <li class="menu-list-item"><%= link_to 'Log out', destroy_admin_session_path, method: :delete, class: "btn btn-light btn-light-m" %></li>
             <li class="menu-list-item">
               <p>administrator</p>
-              <p>id: <%= @current_admin.id %></p>
+              <p>id: <%= current_admin.id %></p>
             </li>
           <% elsif user_signed_in? %>
             <li class="menu-list-item">
@@ -33,12 +33,12 @@
               <% end %>
             </li>
             <li class="menu-list-item">
-              <%= image_tag @current_user.get_user_image(100,100),class: "rounded shadow mb-3" %>
-              <p class="login-user text-center">user: <%= @current_user.name %></p>
-              <p class="login-user text-center">id: <%= @current_user.screen_name %></p>
+              <%= image_tag current_user.get_user_image(100,100),class: "rounded shadow mb-3" %>
+              <p class="login-user text-center">user: <%= current_user.name %></p>
+              <p class="login-user text-center">id: <%= current_user.screen_name %></p>
             </li>
             <li>
-              <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', user_edit_path(@user), class: "btn btn-light btn-light-s" %></p>
+              <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', user_edit_path(current_user), class: "btn btn-light btn-light-s" %></p>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light btn-light-s" %></p>
             </li>
           <% else %>

@@ -1,10 +1,10 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_current_user
+  before_action :authenticate_user!, except: [:show]
 
   def index
-    user_ids = @user.followings.includes(:id) + [@user.id]
+    user_ids = current_user.followings.includes(:id) + [current_user.id]
     @posts = Post.only_active.where(user_id: user_ids).order(created_at: :desc)
+    @comments = Comment.only_active.where(user_id: @posts.pluck(:id)).order(created_at: :asc)
   end
 
   def show
@@ -15,7 +15,7 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if current_user.update(user_params)
       redirect_to user_edit_path(@user.id), notice: 'プロフィールを更新しました。'
     else
       flash.now[:notice] = 'プロフィールの更新に失敗しました。'
@@ -27,9 +27,5 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:image, :name, :email, :bio)
-  end
-
-  def set_current_user
-    @user = current_user
   end
 end

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     patch 'user' => 'users#update'
     resources :posts, only: [:new, :create, :destroy]
     resources :favorites, only: [:index, :create, :destroy]
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create, :destroy]
     patch 'comments/:id' => 'comments#update', as: 'delete_comment'
     get 'following' => 'follows#following', as: 'following'
     get 'follower' => 'follows#follower', as: 'follower'

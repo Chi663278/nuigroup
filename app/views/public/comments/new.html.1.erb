@@ -1,6 +1,15 @@
 <section id="input">
   <div class="inner-white">
     <h1>Comment</h1>
+    <div class="text-center">
+      <p class="login-user">user: <%= @user.name %> / ID: <%= @user.screen_name %></p>
+      <%= image_tag @post.get_post_image(500,500), class: "shadow rounded mb-4" %>
+    </div>
+
+    <div class="text-center">
+      <p class="login-user">user: <%= current_user.name %> / ID: <%= current_user.screen_name %></p>
+      <p class="notice"><%= notice %></p>
+    </div>
 
     <%= form_with model: @comment do |f| %>
       <div class="field">
