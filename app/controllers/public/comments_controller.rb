@@ -8,12 +8,14 @@ class Public::CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
+    @comment.user = current_user
     if @comment.save
       redirect_to timeline_path(@comment), notice: 'コメントを投稿しました。'
     else
       flash.now[:notice] = 'コメントの投稿に失敗しました。'
       render :new
     end
+    puts "comment_params: #{comment_params}"
   end
 
   def destroy
