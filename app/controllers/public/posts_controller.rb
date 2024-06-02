@@ -18,11 +18,12 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to timeline_path(@post), notice: 'ポストを更新しました。'
+    @post = Post.find(params[:id])
+    if @post.update(is_active: false)
+      redirect_to timeline_path(@post), notice: 'ポストを削除しました。'
     else
-      flash.now[:notice] = 'ポストの更新に失敗しました。'
-      render :update
+      flash.now[:notice] = 'ポストを削除できませんでした。'
+      render :delete_post
     end
   end
 
