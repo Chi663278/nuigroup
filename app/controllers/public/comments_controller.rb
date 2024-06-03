@@ -15,10 +15,12 @@ class Public::CommentsController < ApplicationController
       flash.now[:notice] = 'コメントの投稿に失敗しました。'
       render :new
     end
-    puts "comment_params: #{comment_params}"
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.update!(is_active: false)
+    redirect_to timeline_path(comment), notice: 'コメントを削除しました。'
   end
 
   private

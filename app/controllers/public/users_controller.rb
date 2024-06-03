@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   def index
     user_ids = current_user.followings.includes(:id) + [current_user.id]
     @posts = Post.only_active.where(user_id: user_ids).order(created_at: :desc)
-    @comments = Comment.only_active.where(user_id: @posts.pluck(:id)).order(created_at: :asc)
+    @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
   end
 
   def show
