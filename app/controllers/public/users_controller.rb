@@ -8,10 +8,13 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-
+    @user = User.find_by(screen_name: params[:screen_name])
+    @posts = Post.where(user_id: @user.id).order(created_at: :desc)
+    @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
   end
 
   def edit
+    @user = current_user
   end
 
   def update

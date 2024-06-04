@@ -1,52 +1,5 @@
 <p class="notice"><%= notice %></p>
 <section id="input">
   <h1>Timeline</h1>
-
-    <% @posts.each do |post| %>
-      <div class="inner-white-l">
-        <div class="text-right">
-          <% if post.user == current_user %>
-            <p><%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
-          <% end %>
-        </div>
-        <div>
-          <p class="author mb-2">user: <%= post.user.name %> / id: <%= post.user.screen_name %></p>
-          <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
-            <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
-          <% end %>
-        </div>
-        <div class="text-center">
-          <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
-          <div class="text-justify"><p class="text"><%= post.caption %></p></div>
-        </div>
-
-        <div class="text-right">
-          <% if user_signed_in? %>
-            <p><%= link_to 'comment', new_post_comment_path(post), class: "btn btn-light btn-light-ss" %></p>
-          <% end %>
-        </div>
-
-        <% @comments.each do |comment| %>
-          <% if post.id == comment.post_id %>
-            <hr class="line1">
-            <div class="content-row">
-              <div class="content-column ml-3">
-                <p class="author mb-2">user: <%= comment.user.name %> / id: <%= comment.user.screen_name %></p>
-                <p>
-                  <%= link_to user_timeline_path(screen_name: comment.user.screen_name) do %>
-                    <%= image_tag comment.user.get_user_image(80,80), class: "shadow rounded mb-4" %>
-                  <% end %>
-                </p>
-              </div>
-                <p class="text"><%= comment.comment %></p>
-                <% if comment.user == current_user %>
-                  <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
-                <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-
-
+  <%= render 'posts', posts: @posts, comments: @comments %>
 </section>

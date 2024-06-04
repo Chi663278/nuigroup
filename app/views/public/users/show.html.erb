@@ -1,2 +1,5 @@
-<h1>'s Timeline</h1>
-<p>Find me in app/views/public/users/index.html.erb</p>
+<p class="notice"><%= notice %></p>
+<section id="input">
+  <h1><%= @user.name %>'s Timeline</h1>
+  <%= render 'posts', posts: @posts, comments: @comments %>
+</section>
