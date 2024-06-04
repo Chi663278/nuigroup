@@ -31,14 +31,16 @@ Rails.application.routes.draw do
     get '/:screen_name' => 'users#show', as: 'user_timeline'
     get 'user/edit' => 'users#edit'
     patch 'user' => 'users#update'
+    resources :users, param: :screen_name do
+      resources :relationships, only: [:create, :destroy]
+      member do
+        get :followings, :followers
+      end
+    end
     resources :posts, only: [:new, :create, :destroy] do
       resources :favorites, only: [:index, :create, :destroy]
       resources :comments, only: [:new, :create, :destroy]
     end
-    get 'following' => 'follows#following', as: 'following'
-    get 'follower' => 'follows#follower', as: 'follower'
-    resources :follows, only: [:create]
-    delete 'follow/:id' => 'follows#destroy', as: 'delete_follow'
   end
 
 end
