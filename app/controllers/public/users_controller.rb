@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     user_ids = current_user.followings.includes(:id) + [current_user.id]
@@ -22,7 +22,8 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    @user = current_user
+    if @user.update(user_params)
       redirect_to user_edit_path(current_user.id), notice: 'プロフィールを更新しました。'
     else
       flash.now[:notice] = 'プロフィールの更新に失敗しました。'

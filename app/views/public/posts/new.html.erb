@@ -2,8 +2,18 @@
   <div class="inner-white">
     <h1>New post</h1>
     <div class="text-center">
-      <p class="login-user">user: <%= current_user.name %> / ID: <%= current_user.screen_name %></p>
       <p class="notice"><%= notice %></p>
+      <% if @post.errors.any? %>
+        <%= @post.errors.count %>件のエラー
+        <ul>
+          <% @post.errors.full_messages.each do |message| %>
+            <ul><%= message %></ul>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <p class="login-user">user: <%= current_user.name %> / ID: <%= current_user.screen_name %></p>
     </div>
 
     <%= form_with model: @post do |f| %>
