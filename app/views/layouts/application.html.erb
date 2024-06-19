@@ -14,8 +14,18 @@
   <body>
     <header>
       <div class="title_nuigroup">
-        <%= link_to (admin_signed_in? ? new_admin_session_path : root_path ) do %>
-          <% image_tag 'title_image.png', size: "310x126" %>
+        <% if admin_signed_in? %>
+          <%= link_to new_admin_session_path do %>
+            <% image_tag 'title_image.png', size: "310x126" %>
+          <% end %>
+        <% elsif user_signed_in? %>
+          <%= link_to timeline_path(current_user) do %>
+            <% image_tag 'title_image.png', size: "310x126" %>
+          <% end %>
+        <% else %>
+          <%= link_to root_path do %>
+            <% image_tag 'title_image.png', size: "310x126" %>
+          <% end %>
         <% end %>
       </div>
       <div class="menubar">
@@ -33,7 +43,9 @@
               <% end %>
             </li>
             <li class="menu-list-item">
-              <%= image_tag current_user.get_user_image(100,100),class: "rounded shadow mb-3" %>
+              <%= link_to user_timeline_path(current_user.screen_name) do %>
+                <%= image_tag current_user.get_user_image(100,100), class: "rounded shadow mb-3" %>
+              <% end %>
               <p class="login-user text-center">user: <%= current_user.name %></p>
               <p class="login-user text-center">id: <%= current_user.screen_name %></p>
             </li>
