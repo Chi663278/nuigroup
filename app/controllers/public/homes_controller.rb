@@ -16,11 +16,11 @@ class Public::HomesController < ApplicationController
         @results = []
       end
     else
-      puts "@results: #{@results.inspect}"
+      @results = []
     end
 
     if @results.empty?
-      redirect_to timeline_path, alert: '該当結果がありません。'
+      redirect_to timeline_path, notice: '該当結果がありません。'
     else
       render :search
     end

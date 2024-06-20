@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
       @posts = Post.where(user_id: @user.id).order(created_at: :desc)
       @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
     else
-      redirect_to timeline_path(current_user.id), notice: 'ユーザーが存在しません。'
+      redirect_to timeline_path, notice: 'ユーザーが存在しません。'
     end
   end
 
