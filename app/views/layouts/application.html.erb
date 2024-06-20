@@ -52,6 +52,23 @@
             <li>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', user_edit_path(@user), class: "btn btn-light btn-light-s" %></p>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light btn-light-s" %></p>
+              <p>
+                <%= form_with url: search_path, local: true, method: :get do |f| %>
+                  <div>
+                    <%= f.label :category, "検索項目" %>
+                    <%= f.select :category, options_for_select([['ユーザー', 'user'],['投稿', 'post']]), prompt: 'カテゴリ選択' %>
+                  </div>
+
+                  <div>
+                    <%= f.label :query, "検索ワード" %>
+                    <%= f.text_field :query %>
+                  </div>
+
+                  <div>
+                    <%= f.submit "検索" %>
+                  </div>
+                <% end %>
+              </p>
             </li>
           <% else %>
             <li class="menu-list-item"><%= link_to 'Sign up', new_user_registration_path, class: "btn btn-light btn-light-m" %></li>

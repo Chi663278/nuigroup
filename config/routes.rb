@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index, :create, :destroy]
       resources :comments, only: [:new, :create, :destroy]
     end
+    get 'search', to: 'homes#search', as: 'search'
   end
 
 end

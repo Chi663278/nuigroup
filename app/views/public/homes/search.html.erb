@@ -1,0 +1,7 @@
+<% if @results.present? %>
+  <ul>
+    <% @results.each do |result| %>
+      <ul><%= result.name || result.caption %></ul>
+    <% end %>
+  </ul>
+<% end %>
