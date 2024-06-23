@@ -37,12 +37,26 @@
               <p>id: <%= current_admin.id %></p>
             </li>
           <% elsif user_signed_in? %>
+            <li class="menu-list-item align-self-end">
+              <table class="align-items-start">
+                <%= form_with url: search_path, local: true, method: :get do |f| %>
+                  <tr>
+                    <td><%= f.label :category, "検索項目 :" %></td>
+                    <td><%= f.select :category, options_for_select([['ユーザーID', 'screen_name'],['ユーザー名', 'user'],['投稿', 'post']]), prompt: 'カテゴリ選択', class: "form-control btn btn-light dropdown-toggle" %></td>
+                  </tr>
+                  <tr>
+                    <td class="pr-2 "><%= f.label :query, "検索ワード :" %></td>
+                    <td><%= f.text_field :query, placeholder: "キーワードを入力", class: "form-control" %><%= f.submit "Search", class: "btn btn-light btn-light-ss" %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </li>
             <li class="menu-list-item">
-              <%= link_to new_post_path, class: "btn btn-light btn-light-post rounded-circle" do %>
+              <%= link_to new_post_path, class: "btn btn-light btn-light-post rounded-circle mr-3" do %>
                 <i class="fa-solid fa-plus"></i>
               <% end %>
             </li>
-            <li class="menu-list-item">
+            <li class="menu-list-item mr-3">
               <%= link_to user_timeline_path(current_user.screen_name) do %>
                 <%= image_tag current_user.get_user_image(100,100), class: "rounded shadow mb-3" %>
               <% end %>
@@ -52,23 +66,6 @@
             <li>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', user_edit_path(@user), class: "btn btn-light btn-light-s" %></p>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light btn-light-s" %></p>
-              <p>
-                <%= form_with url: search_path, local: true, method: :get do |f| %>
-                  <div>
-                    <%= f.label :category, "検索項目" %>
-                    <%= f.select :category, options_for_select([['ユーザーID', 'screen_name'],['ユーザー名', 'user'],['投稿', 'post']]), prompt: 'カテゴリ選択' %>
-                  </div>
-
-                  <div>
-                    <%= f.label :query, "検索ワード" %>
-                    <%= f.text_field :query %>
-                  </div>
-
-                  <div>
-                    <%= f.submit "検索" %>
-                  </div>
-                <% end %>
-              </p>
             </li>
           <% else %>
             <li class="menu-list-item"><%= link_to 'Sign up', new_user_registration_path, class: "btn btn-light btn-light-m" %></li>
