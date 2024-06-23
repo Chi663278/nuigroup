@@ -8,9 +8,9 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(screen_name: params[:screen_name])
+    @user = User.only_active.find_by(screen_name: params[:screen_name])
     if @user
-      @posts = Post.where(user_id: @user.id).order(created_at: :desc)
+      @posts = Post.only_active.where(user_id: @user.id).order(created_at: :desc)
       @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
     else
       redirect_to timeline_path, notice: 'ユーザーが存在しません。'
@@ -32,12 +32,12 @@ class Public::UsersController < ApplicationController
   end
 
   def followings
-    @user = User.find(params[:screen_name])
+    @user = User.only_active.find(params[:screen_name])
     @users = @user.followings
   end
 
   def followers
-    @user = User.find(params[:screen_name])
+    @user = User.only_active.find(params[:screen_name])
     @users = @user.followers
   end
 

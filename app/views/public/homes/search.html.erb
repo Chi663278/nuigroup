@@ -1,11 +1,28 @@
+<h1>Search Results</h1>
 <% if @results.present? %>
-  <ul>
-    <% @results.each do |result| %>
-      <% if @category == 'user' %>
-        <ul><%= result.name %></ul>
-      <% elsif @category == 'post' %>
-        <ul><%= result.caption %></ul>
-      <% end %>
-    <% end %>
-  </ul>
+
+  <% if @category == 'screen_name' %>
+    <p class="text-center">ユーザーID 検索の結果</p>
+  <% elsif @category == 'user' %>
+    <p class="text-center">ユーザー名 検索の結果</p>
+  <% elsif @category == 'post' %>
+    <p class="text-center">投稿記事 検索の結果</p>
+  <% end %>
+  <p class="text-center">（検索ワード：<%= params[:query] %>）</p>
+
+    <section id="input">
+          <% if @category == 'screen_name' || @category =='user' %>
+            <% @results.each do |result| %>
+              <div class="inner-white">
+                <%= link_to user_timeline_path(result.screen_name) do %>
+                  <ul><%= image_tag result.get_user_image(100,100), class: "shadow rounded" %></ul>
+                  <ul>ユーザーID：<%= result.screen_name %></ul>
+                  <ul>ユーザー名：<%= result.name %></ul>
+                <% end %>
+              </div>
+            <% end %>
+          <% elsif @category == 'post' %>
+            <%= render '/public/users/posts', posts: @results, comments: @comments %>
+          <% end %>
+    </section>
 <% end %>

@@ -56,7 +56,7 @@
                 <%= form_with url: search_path, local: true, method: :get do |f| %>
                   <div>
                     <%= f.label :category, "検索項目" %>
-                    <%= f.select :category, options_for_select([['ユーザー', 'user'],['投稿', 'post']]), prompt: 'カテゴリ選択' %>
+                    <%= f.select :category, options_for_select([['ユーザーID', 'screen_name'],['ユーザー名', 'user'],['投稿', 'post']]), prompt: 'カテゴリ選択' %>
                   </div>
 
                   <div>

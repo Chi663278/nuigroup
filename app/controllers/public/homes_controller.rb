@@ -8,10 +8,13 @@ class Public::HomesController < ApplicationController
 
     if @category.present? && @query.present?
       case @category
+      when 'screen_name'
+        @results = User.only_active.where('screen_name LIKE ?', "%#{@query}%")
       when 'user'
-        @results = User.where('name LIKE ?', "%#{@query}%")
+        @results = User.only_active.where('name LIKE ?', "%#{@query}%")
       when 'post'
-        @results = Post.where('caption LIKE ?', "%#{@query}%")
+        @results = Post.only_active.where('caption LIKE ?', "%#{@query}%").order(created_at: :desc)
+        @comments = Comment.only_active.where(post_id: @results.pluck(:id)).order(created_at: :asc)
       else
         @results = []
       end
@@ -20,7 +23,7 @@ class Public::HomesController < ApplicationController
     end
 
     if @results.empty?
-      redirect_to timeline_path, notice: '該当結果がありません。'
+      redirect_to timeline_path, notice: '検索 - 該当結果がありません。'
     else
       render :search
     end
