@@ -279,7 +279,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
   color: #C77B9F;
   transition-duration: 0.2s;
 }
@@ -296,3 +296,44 @@ hr {
   margin: 40px auto 20px auto;
 }
 
+.table-1 {
+  border-collapse: collapse;
+  width: 900px;
+  margin: 50px auto; 
+}
+
+.table-1 a {
+  text-decoration: underline;
+}
+
+.table-1 a:hover {
+  text-decoration: none;
+}
+
+.table-1, .table-1 th, .table-1 td {
+  border: 1px #8A456C solid;
+}
+
+.table-1 thead {
+  color: #fff;
+  font-size: 12px;
+  background-color: #B5739D;
+}
+
+.table-1 tbody {
+  font-size: 15px;
+  background-color: #E1D5E7;
+  
+}
+
+.table-1 th {
+  padding: 5px 0;  
+}
+
+.table-1 td {
+  padding: 10px 0;
+}
+
+.table-1 tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
