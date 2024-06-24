@@ -6,15 +6,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index]
-    get 'user_posts' => 'posts#user_posts', as: 'user_posts'
+    get 'user:id/posts' => 'posts#user_posts', as: 'user_posts'
     resources :posts, only: [:show, :update]
-    get 'user_comments' => 'comments#user_comments', as: 'user_comments'
-    get 'post_comments' => 'comments#post_comments', as: 'post_comments'
+    get 'user:user_id/comments' => 'comments#user_comments', as: 'user_comments'
+    get 'post:post_id/comments' => 'comments#post_comments', as: 'post_comments'
     resources :comments, only: [:update]
-    get 'following/:user_id' => 'follows#following', as: 'following'
-    get 'follower/:user_id' => 'follows#follower', as: 'follower'
-    get 'user_favs/:user_id' => 'favorites#user_favs', as: 'user_favs'
-    get 'post_favs/:post_id' => 'favorites#post_favs', as: 'post_favs'
+    get 'user:user_id/followings' => 'follows#following', as: 'following'
+    get 'user:user_id/followers' => 'follows#follower', as: 'follower'
+    get 'user:user_id/favs' => 'favorites#user_favs', as: 'user_favs'
+    get 'post:post_id/favs' => 'favorites#post_favs', as: 'post_favs'
     resources :favorites, only: [:destroy]
   end
 
