@@ -73,6 +73,13 @@
           <% end %>
         </ul>
       </div>
+      <div class="admin_nuigroup">
+        <% unless user_signed_in? %>
+          <%= link_to new_admin_session_path do %>
+            <% image_tag 'admin_icon.png', size: "35x35" %>
+          <% end %>
+        <% end %>
+      </div>
     </header>
     <%= yield %>
   </body>

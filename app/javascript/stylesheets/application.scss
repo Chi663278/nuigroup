@@ -34,13 +34,20 @@ header {
   display: flex;
   background-color: #8A456C;
   color: #FFFFFF;
+  position: relative;
 }
 
 .title_nuigroup {
   margin: auto auto auto 10px;
 }
 
-.title_nuigroup :hover{
+.admin_nuigroup {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.title_nuigroup :hover, .admin_nuigroup :hover {
   opacity: 0.9;
   filter: brightness(110%);
   transition-duration: 0.3s;
