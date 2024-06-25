@@ -1,2 +1,35 @@
-<h1>Admin::Posts#user_posts</h1>
-<p>Find me in app/views/admin/posts/user_posts.html.erb</p>
+<p class="notice"><%= notice %></p>
+<h1>ユーザー投稿一覧</h1>
+<%= render 'user', user: @user %>
+<p class="admin-return"><%= link_to "← ユーザー一覧に戻る", admin_users_path %></p>
+<table class="table-1 center-block text-center">
+  <thead>
+    <tr>
+      <th>投稿ID</th>
+      <th>コメント数</th>
+      <th>Favorite数</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to admin_post_path(post) do %><%= post.id %><% end %></td>
+        <td><%= link_to admin_post_comments_path(post.comments) do %><%= post.comments.count %><% end %></td>
+        <td><%= link_to admin_post_favs_path(post.favorites) do %><%= post.favorites.count %><% end %></td>
+        <td>
+          <p class="<%= post.is_active ? 'text-primary' : 'text-danger' %>">
+            <b><%= post.is_active ? '有効' : '削除済み' %></b>
+          </p>
+          <% if post.is_active %>
+            <%= link_to "削除する", admin_post_path(post), method: :patch, data: { confirm: '本当に削除しますか？' } %>
+          <% else %>
+            <%= link_to "復帰させる", admin_post_path(post), method: :patch, data: { confirm: '本当に復帰させますか？' } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p class="admin-return"><%= link_to "← ユーザー一覧に戻る", admin_users_path %></p>
+

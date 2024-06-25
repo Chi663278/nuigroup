@@ -84,6 +84,24 @@ header {
   border-radius: 30px;
 }
 
+.inner-white-s {
+  width: 400px;
+  background: #FFFFFF;
+  max-width: 100%;
+  margin: 15px auto;
+  padding: 24px;
+  border: none;
+  border-radius: 30px;
+}
+
+.inner-white-s table {
+  margin: 0 auto;
+}
+
+.inner-white-s tr {
+  height: 2.5em;
+}
+
 .form-label {
   font-family: Georgia, serif;
   font-style: italic;
@@ -299,14 +317,14 @@ hr {
 .table-1 {
   border-collapse: collapse;
   width: 900px;
-  margin: 50px auto; 
+  margin: 50px auto;
 }
 
-.table-1 a {
+.table-1 a, .admin-return a {
   text-decoration: underline;
 }
 
-.table-1 a:hover {
+.table-1 a:hover, .admin-return a:hover {
   text-decoration: none;
 }
 
@@ -323,11 +341,11 @@ hr {
 .table-1 tbody {
   font-size: 15px;
   background-color: #E1D5E7;
-  
+
 }
 
 .table-1 th {
-  padding: 5px 0;  
+  padding: 5px 0;
 }
 
 .table-1 td {
@@ -336,4 +354,10 @@ hr {
 
 .table-1 tbody tr:nth-child(odd) {
   background-color: #fff;
+}
+
+.admin-return {
+  margin: 0 auto;
+  width: 900px;
+  text-align: right;
 }

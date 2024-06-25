@@ -1,9 +1,9 @@
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <h1>Log in page<br>(administrator)</h1>
 <h4>メールアドレスとパスワードを入力</h4>
 <section id="input">
   <div class="inner">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= form_with model: @admin, url: session_path(resource_name), local: true do |f| %>
 
       <div class="field">

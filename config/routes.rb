@@ -8,13 +8,13 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
     get 'user:id/posts' => 'posts#user_posts', as: 'user_posts'
     resources :posts, only: [:show, :update]
-    get 'user:user_id/comments' => 'comments#user_comments', as: 'user_comments'
-    get 'post:post_id/comments' => 'comments#post_comments', as: 'post_comments'
+    get 'user:id/comments' => 'comments#user_comments', as: 'user_comments'
+    get 'post:id/comments' => 'comments#post_comments', as: 'post_comments'
     resources :comments, only: [:update]
-    get 'user:user_id/followings' => 'follows#following', as: 'following'
-    get 'user:user_id/followers' => 'follows#follower', as: 'follower'
-    get 'user:user_id/favs' => 'favorites#user_favs', as: 'user_favs'
-    get 'post:post_id/favs' => 'favorites#post_favs', as: 'post_favs'
+    get 'user:id/followings' => 'follows#following', as: 'following'
+    get 'user:id/followers' => 'follows#follower', as: 'follower'
+    get 'user:id/favs' => 'favorites#user_favs', as: 'user_favs'
+    get 'post:id/favs' => 'favorites#post_favs', as: 'post_favs'
     resources :favorites, only: [:destroy]
   end
 
