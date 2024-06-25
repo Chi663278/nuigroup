@@ -42,7 +42,7 @@
                 <%= form_with url: search_path, local: true, method: :get do |f| %>
                   <tr>
                     <td><%= f.label :category, "検索項目 :" %></td>
-                    <td><%= f.select :category, options_for_select([['ユーザーID', 'screen_name'],['ユーザー名', 'user'],['投稿', 'post']]), prompt: 'カテゴリ選択', class: "form-control btn btn-light dropdown-toggle" %></td>
+                    <td><%= f.select :category, options_for_select([['ユーザーID', 'screen_name'],['ユーザー名','user'],['投稿','post']]), {include_blank: "選択してください"}, {class: 'form-control btn btn-light dropdown-toggle'} %></td>
                   </tr>
                   <tr>
                     <td class="pr-2 "><%= f.label :query, "検索ワード :" %></td>
