@@ -3,9 +3,11 @@ class Admin::PostsController < ApplicationController
   def user_posts
     @user = User.find(params[:id])
     @posts = Post.where(user_id: @user.id)
+    
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def update

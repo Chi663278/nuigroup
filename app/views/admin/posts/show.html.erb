@@ -1,2 +1,55 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<p class="notice"><%= notice %></p>
+<h1>投稿詳細</h1>
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
+
+<section id="input">
+  <div class="inner-white-l">
+  <p>投稿ID： <b><%= @post.id %></b>
+  <p>ユーザーID： <b><%= @post.user_id %></b> / ユーザー名： <b><%= @post.user.name %></b> / スクリーンネーム： <b><%= @post.user.screen_name %></b></p>
+  <p>
+    <%= link_to admin_user_posts_path(@post.user) do %>
+      <%= image_tag @post.user.get_user_image(80,80) %>
+    <% end %>
+  </p>
+  <div class="text-center">
+    <div class="mb-3"><%= image_tag @post.get_post_image(400,400) %></div>
+  </div>
+    <p>キャプション： </p>
+    <div class="text-center">
+      <div class="mb-5"><%= @post.caption %></div>
+      <p>
+        投稿ステータス： <b class="<%= @post.is_active ? 'text-primary' : 'text-danger' %>"><%= @post.is_active ? '有効' : '削除済み' %></b>
+      </p>
+      <% if @post.is_active %>
+        <%= link_to "削除", admin_post_path(@post), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
+      <% else %>
+        <%= link_to "復帰", admin_post_path(@post), method: :patch, data: { confirm: '本当に復帰させますか？' }, class: "btn btn-light btn-light-ss" %>
+      <% end %>
+    </div>
+
+    <% @post.comments.each do |comment| %>
+        <hr class="line1">
+            <p>コメントID： <b><%= comment.id %></b>
+            <p>ユーザーID： <b><%= comment.user_id %></b> / ユーザー名: <b><%= comment.user.name %></b> / スクリーンネーム: <b><%= comment.user.screen_name %></b></p>
+            <p>
+              <%= link_to admin_user_comments_path(comment.user) do %>
+                <%= image_tag comment.user.get_user_image(80,80) %>
+              <% end %>
+            </p>
+          <p>コメント内容： </p>
+          <p class= "text-center"><%= comment.comment %></p>
+        <div class="text-right">
+          <p>
+            コメントステータス： <b class="<%= comment.is_active ? 'text-primary' : 'text-danger' %>"><%= comment.is_active ? '有効' : '削除済み' %></b>
+          </p>
+          <% if comment.is_active %>
+            <%= link_to "削除", admin_comment_path(comment), method: :patch, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
+          <% else %>
+            <%= link_to "復帰", admin_comment_path(comment), method: :patch, data: { confirm: '本当に復帰させますか？' }, class: "btn btn-light btn-light-ss" %>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</section>
+
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
