@@ -26,7 +26,12 @@
       <p>
         <%= link_to post_favorite_path(post), method: :delete do %>
           <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
-          <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
+          <%= post.favorites.count>1 ? "favorites" : "favorite" %>
+          <% if post.favorites.count>0 %>
+            <%= link_to post_favorites_path(post) do %>
+              <i class="fa-solid fa-user"></i> favorited by
+            <% end %>
+          <% end %>
         <% end %>
       </p>
     <% else %>
@@ -34,6 +39,11 @@
         <%= link_to post_favorite_path(post), method: :post do %>
           <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
           <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
+          <% if post.favorites.count>0 %>
+            <%= link_to post_favorites_path(post) do %>
+              <i class="fa-solid fa-user"></i> favorited by
+            <% end %>
+          <% end %>
         <% end %>
       </p>
     <% end %>
