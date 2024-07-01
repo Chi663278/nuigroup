@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     get 'user:id/followers' => 'follows#follower', as: 'follower'
     get 'user:id/favs' => 'favorites#user_favs', as: 'user_favs'
     get 'post:id/favs' => 'favorites#post_favs', as: 'post_favs'
-    resources :favorites, only: [:destroy]
   end
 
 
@@ -38,10 +37,12 @@ Rails.application.routes.draw do
       end
     end
     resources :posts, only: [:new, :create, :destroy] do
-      resources :favorites, only: [:index, :create, :destroy]
+      resources :favorites, only: [:index]
+      resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:new, :create, :destroy]
     end
-    get 'search', to: 'homes#search', as: 'search'
+    get 'favorites' => 'favorites#user_favs', as: 'user_favs'
+    get 'search' => 'homes#search', as: 'search'
   end
 
 end

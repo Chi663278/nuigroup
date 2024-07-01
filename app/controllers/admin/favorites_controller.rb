@@ -5,7 +5,4 @@ class Admin::FavoritesController < ApplicationController
 
   def post_favs
   end
-
-  def destroy
-  end
 end

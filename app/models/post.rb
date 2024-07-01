@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_one_attached :image
 
   scope :only_active, -> { where(is_active: true) }
@@ -15,5 +15,9 @@ class Post < ApplicationRecord
       image.attach(io: File.open(file_path), filename: 'noimage.png', content_type: 'image/png')
     end
     image.variant(resize_to_limit: [width, height]).processed
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 end

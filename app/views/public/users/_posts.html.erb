@@ -22,12 +22,28 @@
       <% end %>
     </div>
 
+    <% if post.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_favorite_path(post), method: :delete do %>
+          <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
+          <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to post_favorite_path(post), method: :post do %>
+          <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+          <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
+        <% end %>
+      </p>
+    <% end %>
+
     <% comments.each do |comment| %>
       <% if post.id == comment.post_id %>
         <hr class="line1">
         <div class="content-row">
           <div class="content-column ml-3">
-            <p class="author mb-2">user: <%= comment.user.name %> / id: <%= comment.user.screen_name %></p>
+            <p class="author mb-2">user: <%= comment.user.name %><br>id: <%= comment.user.screen_name %></p>
             <p>
               <%= link_to user_timeline_path(screen_name: comment.user.screen_name) do %>
                 <%= image_tag comment.user.get_user_image(80,80), class: "shadow rounded mb-4" %>
