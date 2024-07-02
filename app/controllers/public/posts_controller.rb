@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
 
   def ensure_user
     @posts = current_user.posts
-    @post = @posts.find_by(id: params[:id])
+    @post = @posts.find(params[:id])
     redirect_to timeline_path(current_user) unless @post
   end
 end
