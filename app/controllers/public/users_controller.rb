@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
   end
 
   def followers
-    @followed_user = User.only_active.find(params[:screen_name])
+    @followed_user = User.only_active.find_by(screen_name: params[:screen_name])
     @followed_users = @followed_user.followers
   end
 

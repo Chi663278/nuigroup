@@ -110,11 +110,11 @@ header {
 }
 
 .inner-magenta {
+  margin: 130px 20px auto auto;
+  padding: 15px 0;
+  margin-left: max(20px, auto);
   width: 330px;
   max-width: 100%;
-  height: 640px;
-  margin: 130px 20px auto auto;
-  margin-left: max(20px, auto);
   background: #8A456C;
   border: none;
   border-radius: 30px;
@@ -161,6 +161,11 @@ h2 {
   text-shadow: 3px 3px 6px rgba(106, 63, 63, 0.7);
   font-size: 20px;
   margin-bottom: 0;
+}
+
+.author-2 {
+  color: #E6D0DE;
+  font-weight: bold;
 }
 
 h1,h2,.form-label-s,.jump,.login-user {
@@ -243,11 +248,26 @@ h1,h2,.form-label-s,.jump,.login-user {
   font-size: 16px;
 }
 
-.btn-light-ss {
-  width: 100px;
-  height: 35px;
-  padding: 1px 10px;
-  font-size: 16px;
+.btn-light {
+  font-style: italic;
+  border-radius: 10px;
+  background: #C77B9F;
+  border: 3px solid #C77B9F;
+  color: #FFFFFF;
+}
+
+.btn-light-bar1 {
+  width: 245px;
+  height: 50px;
+  padding: 5px;
+  font-size: 23px;
+}
+
+.btn-light-bar2 {
+  width: 110px;
+  height: 50px;
+  padding: 5px;
+  font-size: 23px;
 }
 
 .btn-light-m {
@@ -373,6 +393,16 @@ hr {
 .table-1 tbody tr:nth-child(odd) {
   background-color: #fff;
 }
+
+.table-2 {
+  margin: 0 auto;
+}
+
+.table-2 td {
+  padding: 5px;
+}
+
+
 
 .admin-return {
   margin: 0 auto;

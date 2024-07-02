@@ -1,8 +1,39 @@
 <section class="user">
-  <div class="inner-magenta">
+  <div class="inner-magenta text-center">
+    <p><%= image_tag @user.get_user_image(200,200), class: "shadow rounded mb-2" %></p>
+    <table class="table-2 author author-2">
+      <tr><td>user: </td><td><%= @user.name %></td></tr>
+      <tr><td>ID: </td><td><%= @user.screen_name %></td></tr>
+    </table>
+    <p class="text-white mt-1 mb-2"><%= @user.bio %></p>
+    <%= link_to followings_user_path(@user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
+      Following: <%= @user.followings.count %>
+    <% end %>
+    <%= link_to followers_user_path(@user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
+      Follower: <%= @user.followers.count %>
+    <% end %>
 
+    <% if @user == current_user %>
+      <div class="d-flex justify-content-center">
+        <%= link_to user_edit_path(@user), class: "btn btn-light btn-light-bar2 mb-2 mr-2" do %>
+          <i class="fa-solid fa-gear"></i> Edit
+        <% end %>
+        <%= link_to user_favs_path(@user), class: "btn btn-light btn-light-bar2 mb-2" do %>
+          <i class="fa-solid fa-heart"></i> Favs
+        <% end %>
+      </div>
+    <% else %>
+      <% if @user.is_followed_by?(current_user) %>
+        <%= link_to user_relationship_path(@user.screen_name, @user.id), method: :delete, class: "btn btn-light btn-light-bar1 mb-2" do %>
+          <i class="fa-solid fa-minus"></i></i> Unfollow
+        <% end %>
+      <% else %>
+        <%= link_to user_relationships_path(@user.screen_name), method: :post, class: "btn btn-light btn-light-bar1 mb-2" do %>
+          <i class="fa-solid fa-plus"></i> Follow
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
-
   <p class="notice"><%= notice %></p>
   <section id="input">
     <h1><%= @user.name %>'s Timeline</h1>
