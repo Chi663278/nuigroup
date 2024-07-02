@@ -1,8 +1,11 @@
-<div class="inner-magenta">
-  
-</div>
-<p class="notice"><%= notice %></p>
-<section id="input">
-  <h1><%= @user.name %>'s Timeline</h1>
-  <%= render 'posts', posts: @posts, comments: @comments %>
+<section class="user">
+  <div class="inner-magenta">
+
+  </div>
+
+  <p class="notice"><%= notice %></p>
+  <section id="input">
+    <h1><%= @user.name %>'s Timeline</h1>
+    <%= render 'posts', posts: @posts, comments: @comments %>
+  </section>
 </section>

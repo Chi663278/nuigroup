@@ -102,9 +102,19 @@ header {
   height: 2.5em;
 }
 
+.user {
+  display: flex;
+  width: 1190px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .inner-magenta {
   width: 330px;
+  max-width: 100%;
   height: 640px;
+  margin: 130px 20px auto auto;
+  margin-left: max(20px, auto);
   background: #8A456C;
   border: none;
   border-radius: 30px;
