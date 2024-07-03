@@ -24,7 +24,7 @@
       </div>
     <% else %>
       <% if @user.is_followed_by?(current_user) %>
-        <%= link_to user_relationship_path(@user.screen_name, @user.id), method: :delete, class: "btn btn-light btn-light-bar1 mb-2" do %>
+        <%= link_to user_relationships_path(@user.screen_name), method: :delete, class: "btn btn-light btn-light-bar1 mb-2" do %>
           <i class="fa-solid fa-minus"></i></i> Unfollow
         <% end %>
       <% else %>

@@ -8,7 +8,7 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def destroy
-    user = User.only_active.find_by(screen_name: params[:user_screen_name], id: params[:user_id])
+    user = User.only_active.find_by(screen_name: params[:user_screen_name])
     current_user.unfollow(user)
     redirect_to request.referer
   end

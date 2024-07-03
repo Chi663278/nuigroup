@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     get 'user/edit' => 'users#edit'
     patch 'user' => 'users#update'
     resources :users, only: [], param: :screen_name do
-      resources :relationships, only: [:create, :destroy]
+      resource :relationships, only: [:create, :destroy]
       member do
         get :followings, :followers
       end
