@@ -28,8 +28,9 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'TL' => 'users#index', as: 'timeline'
     get 'users/:screen_name' => 'users#show', as: 'user_timeline'
-    get 'user/edit' => 'users#edit'
-    patch 'user' => 'users#update'
+    resource :user, only: [:edit, :update, :destroy]
+    get 'user/withdraw' => 'users#withdraw'
+    get 'bye' => 'users#bye'
     resources :users, only: [], param: :screen_name do
       resource :relationships, only: [:create, :destroy]
       member do

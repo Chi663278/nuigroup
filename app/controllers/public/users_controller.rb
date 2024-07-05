@@ -24,7 +24,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_edit_path(current_user.id), notice: 'プロフィールを更新しました。'
+      redirect_to edit_user_path(current_user.id), notice: 'プロフィールを更新しました。'
     else
       flash.now[:notice] = 'プロフィールの更新に失敗しました。'
       render :edit
@@ -37,8 +37,21 @@ class Public::UsersController < ApplicationController
   end
 
   def followers
-    @followed_user = User.only_active.find_by(screen_name: params[:screen_name])
-    @followed_users = @followed_user.followers
+    @follower_user = User.only_active.find_by(screen_name: params[:screen_name])
+    @follower_users = @follower_user.followers
+  end
+
+  def withdraw
+  end
+
+  def destroy
+    current_user.update(is_active: false)
+    reset_session
+    flash[:notice] = 'nuigroupを退会しました。'
+    redirect_to bye_path
+  end
+
+  def bye
   end
 
   private

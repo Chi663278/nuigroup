@@ -1,5 +1,32 @@
 <p class="notice"><%= notice %></p>
-<section id="input">
-  <h1>Timeline</h1>
-  <%= render 'posts', posts: @posts, comments: @comments %>
+
+<section class="user">
+  <div class="inner-magenta text-center">
+    <p><%= image_tag current_user.get_user_image(200,200), class: "shadow rounded mb-2" %></p>
+    <table class="table-2 author author-2">
+      <tr><td>user: </td><td><%= current_user.name %></td></tr>
+      <tr><td>ID: </td><td><%= current_user.screen_name %></td></tr>
+    </table>
+    <p class="text-white mt-1 mb-2"><%= current_user.bio %></p>
+    <%= link_to followings_user_path(current_user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
+      Following: <%= current_user.followings.count %>
+    <% end %>
+    <%= link_to followers_user_path(current_user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
+      Follower: <%= current_user.followers.count %>
+    <% end %>
+
+    <div class="d-flex justify-content-center">
+      <%= link_to edit_user_path(@user), class: "btn btn-light btn-light-bar2 mb-2 mr-2" do %>
+        <i class="fa-solid fa-gear"></i> Edit
+      <% end %>
+      <%= link_to user_favs_path(@user), class: "btn btn-light btn-light-bar2 mb-2" do %>
+        <i class="fa-solid fa-heart"></i> Favs
+      <% end %>
+    </div>
+  </div>
+
+  <section id="input">
+    <h1>Timeline</h1>
+    <%= render 'posts', posts: @posts, comments: @comments %>
+  </section>
 </section>

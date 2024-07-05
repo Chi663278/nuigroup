@@ -8,10 +8,10 @@ class Public::CommentsController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comment_params)
-    @comment.user = current_user
-    if @comment.save
+    post = Post.find(params[:post_id])
+    comment = post.comments.new(comment_params)
+    comment.user = current_user
+    if comment.save
       redirect_to session[:previous_url], notice: 'コメントしました。'
     else
       flash.now[:notice] = 'コメントに失敗しました。'
@@ -30,7 +30,7 @@ class Public::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:comment)
   end
-  
+
   def ensure_user
     @comments = current_user.comments
     @comment = @comments.find_by(id: params[:id])

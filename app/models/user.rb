@@ -42,4 +42,8 @@ class User < ApplicationRecord
   def is_followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
+  
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end
