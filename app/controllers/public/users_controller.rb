@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :bye]
 
   def index
     user_ids = current_user.followings.only_active + [current_user.id]
@@ -45,10 +45,9 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    current_user.update(is_active: false)
+    current_user.update!(is_active: false)
     reset_session
-    flash[:notice] = 'nuigroupを退会しました。'
-    redirect_to bye_path
+    redirect_to bye_path, notice: 'nuigroupを退会しました。'
   end
 
   def bye

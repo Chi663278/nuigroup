@@ -1,74 +1,80 @@
 <div class="mask hidden"></div>
 <div class="modal hidden"></div>
-
-<% posts.each do |post| %>
-  <div class="inner-white-l">
-    <div class="text-right">
-      <% if post.user == current_user %>
-        <p><%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
-      <% end %>
-    </div>
-    <div>
-      <p class="author mb-2">user: <%= post.user.name %> / id: <%= post.user.screen_name %></p>
-      <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
-        <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
-      <% end %>
-    </div>
-    <div class="text-center">
-      <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
-      <div class="text-justify"><p class="text"><%= post.caption %></p></div>
-    </div>
-
-    <div class="text-right">
-      <% if user_signed_in? %>
-        <p><%= link_to 'comment', new_post_comment_path(post), class: "btn btn-light btn-light-ss" %></p>
-      <% end %>
-    </div>
-
-    <% if post.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_favorite_path(post), method: :delete do %>
-          <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
-          <%= post.favorites.count>1 ? "favorites" : "favorite" %>
-          <% if post.favorites.count>0 %>
-            <%= link_to post_favorites_path(post) do %>
-              <i class="fa-solid fa-user"></i> favorited by
-            <% end %>
-          <% end %>
+<% if posts.present? %>
+  <% posts.each do |post| %>
+    <div class="inner-white-l">
+      <div class="text-right">
+        <% if post.user == current_user %>
+          <p><%= link_to 'delete', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
         <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to post_favorite_path(post), method: :post do %>
-          <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
-          <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
-          <% if post.favorites.count>0 %>
-            <%= link_to post_favorites_path(post) do %>
-              <i class="fa-solid fa-user"></i> favorited by
-            <% end %>
-          <% end %>
+      </div>
+      <div>
+        <p class="author mb-2">user: <%= post.user.name %> / id: <%= post.user.screen_name %></p>
+        <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
+          <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
         <% end %>
-      </p>
-    <% end %>
+      </div>
+      <div class="text-center">
+        <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
+        <div class="text-justify"><p class="text"><%= post.caption %></p></div>
+      </div>
 
-    <% comments.each do |comment| %>
-      <% if post.id == comment.post_id %>
-        <hr class="line1">
-        <div class="content-row">
-          <div class="content-column ml-3">
-            <p class="author mb-2">user: <%= comment.user.name %><br>id: <%= comment.user.screen_name %></p>
-            <p>
-              <%= link_to user_timeline_path(screen_name: comment.user.screen_name) do %>
-                <%= image_tag comment.user.get_user_image(80,80), class: "shadow rounded mb-4" %>
+      <div class="text-right">
+        <% if user_signed_in? %>
+          <p><%= link_to 'comment', new_post_comment_path(post), class: "btn btn-light btn-light-ss" %></p>
+        <% end %>
+      </div>
+
+      <% if post.favorited_by?(current_user) %>
+        <p>
+          <%= link_to post_favorite_path(post), method: :delete do %>
+            <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
+            <%= post.favorites.count>1 ? "favorites" : "favorite" %>
+            <% if post.favorites.count>0 %>
+              <%= link_to post_favorites_path(post) do %>
+                <i class="fa-solid fa-user"></i> favorited by
               <% end %>
-            </p>
-          </div>
-            <p class="text"><%= comment.comment %></p>
-            <% if comment.user == current_user %>
-              <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
             <% end %>
-        </div>
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to post_favorite_path(post), method: :post do %>
+            <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
+            <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
+            <% if post.favorites.count>0 %>
+              <%= link_to post_favorites_path(post) do %>
+                <i class="fa-solid fa-user"></i> favorited by
+              <% end %>
+            <% end %>
+          <% end %>
+        </p>
       <% end %>
-    <% end %>
+
+      <% comments.each do |comment| %>
+        <% if post.id == comment.post_id %>
+          <hr class="line1">
+          <div class="content-row">
+            <div class="content-column ml-3">
+              <p class="author mb-2">user: <%= comment.user.name %><br>id: <%= comment.user.screen_name %></p>
+              <p>
+                <%= link_to user_timeline_path(screen_name: comment.user.screen_name) do %>
+                  <%= image_tag comment.user.get_user_image(80,80), class: "shadow rounded mb-4" %>
+                <% end %>
+              </p>
+            </div>
+              <p class="text"><%= comment.comment %></p>
+              <% if comment.user == current_user %>
+                <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
+              <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="inner-white-l">
+    <p class="text-center">まだ投稿がありません。</p><br>
+    <p class="text-center">ヘッダーの <i class="fa-solid fa-plus"></i> ボタンを押すと投稿できるよ！</p>
   </div>
 <% end %>

@@ -2,18 +2,7 @@
 
 <section class="user">
   <div class="inner-magenta text-center">
-    <p><%= image_tag @user.get_user_image(200,200), class: "shadow rounded mb-2" %></p>
-    <table class="table-2 author author-2">
-      <tr><td>user: </td><td><%= @user.name %></td></tr>
-      <tr><td>ID: </td><td><%= @user.screen_name %></td></tr>
-    </table>
-    <p class="text-white mt-1 mb-2"><%= @user.bio %></p>
-    <%= link_to followings_user_path(@user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
-      Following: <%= @user.followings.count %>
-    <% end %>
-    <%= link_to followers_user_path(@user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
-      Follower: <%= @user.followers.count %>
-    <% end %>
+    <%= render 'profile', user: @user %>
 
     <% if @user == current_user %>
       <div class="d-flex justify-content-center">
