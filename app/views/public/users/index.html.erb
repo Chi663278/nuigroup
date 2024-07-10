@@ -14,6 +14,10 @@
     </div>
   </div>
 
+  <div class="inner-magenta text-center">
+    <%= render 'calendar', user: current_user %>
+  </div>
+
   <section id="input">
     <h1>Timeline</h1>
     <%= render 'posts', posts: @posts, comments: @comments %>
