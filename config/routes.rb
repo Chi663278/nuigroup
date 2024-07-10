@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :update]
     get 'user:id/posts' => 'posts#user_posts', as: 'user_posts'
     resources :posts, only: [:show, :update]
     get 'user:id/comments' => 'comments#user_comments', as: 'user_comments'

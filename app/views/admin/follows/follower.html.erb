@@ -1,2 +1,39 @@
-<h1>Admin::Follows#follower</h1>
+<p class="notice"><%= notice %></p>
+<h1>ユーザーがフォローされている一覧</h1>
+<%= render 'admin/posts/user', user: @user %>
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
+<p class="admin-return"><%= link_to "← ユーザー一覧に戻る", admin_users_path %></p>
 
+<table class="table-1 center-block text-center">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>イメージ</th>
+      <th>ユーザーID</th>
+      <th>ユーザー名</th>
+      <th>スクリーンネーム</th>
+      <th>メールアドレス</th>
+      <th>ユーザー<br>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @followers.each_with_index do |follower, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= image_tag follower.get_user_image(80,80) %></td>
+        <td>
+          <%= link_to admin_user_posts_path(follower) do %>
+            <%= follower.id %>
+          <% end %>
+        </td>
+        <td><%= follower.name %></td>
+        <td><%= follower.screen_name %></td>
+        <td><%= follower.email %></td>
+        <td class="<%= follower.is_active ? 'text-primary' : 'text-danger' %>"><b><%= follower.is_active ? '有効' : '退会済み' %></b></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
+<p class="admin-return"><%= link_to "← ユーザー一覧に戻る", admin_users_path %></p>

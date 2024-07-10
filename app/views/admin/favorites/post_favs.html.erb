@@ -1,1 +1,49 @@
+<p class="notice"><%= notice %></p>
+<h1>投稿ごとFavorite一覧</h1>
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
 
+<section id="input">
+  <div class="inner-white-l">
+    <h2>投稿</h2>
+    <p>投稿ID： <b><%= @post.id %></b>
+    <p>ユーザーID： <b><%= @post.user_id %></b> / ユーザー名: <b><%= @post.user.name %></b> / スクリーンネーム <b><%= @post.user.screen_name %></b></p>
+    <p>
+      <%= link_to admin_user_posts_path(@post.user) do %>
+        <%= image_tag @post.user.get_user_image(80,80) %>
+      <% end %>
+    </p>
+    <div class="text-center">
+      <div class="mb-3"><%= image_tag @post.get_post_image(400,400) %></div>
+    </div>
+    <p>キャプション： </p>
+    <div class="text-center">
+    <div class="mb-5"><%= @post.caption %></div>
+    <p>
+      投稿ステータス： <b class="<%= @post.is_active ? 'text-primary' : 'text-danger' %>"><%= @post.is_active ? '有効' : '削除済み' %></b>
+    </p>
+  </div>
+</section>
+  <h2>Favorites</h2>
+  <table class="table-1 center-block text-center">
+    <thead>
+      <tr>
+        <th>Favorite ID</th>
+        <th>ユーザーID・<br>スクリーンネーム</th>
+        <th>ユーザー名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @favorites.each do |favorite| %>
+        <tr>
+          <td><%= favorite.id %></td>
+          <td>
+            <p>ユーザーID： <%= favorite.user_id %></p>
+            <p><%= favorite.user.screen_name %></p>
+          </td>
+          <td><%= favorite.user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p class="admin-return"><%= link_to '←戻る', :back %></p>

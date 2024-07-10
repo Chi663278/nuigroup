@@ -1,7 +1,9 @@
 <p class="notice"><%= notice %></p>
 <h1>ユーザーのコメント一覧</h1>
 <%= render 'admin/posts/user', user: @user %>
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
 <p class="admin-return"><%= link_to "← ユーザー一覧に戻る", admin_users_path %></p>
+
 <table class="table-1 center-block text-center">
   <thead>
     <tr>
@@ -31,4 +33,6 @@
     <% end %>
   </tbody>
 </table>
+
+<p class="admin-return"><%= link_to '←戻る', :back %></p>
 <p class="admin-return"><%= link_to "← ユーザー一覧に戻る", admin_users_path %></p>
