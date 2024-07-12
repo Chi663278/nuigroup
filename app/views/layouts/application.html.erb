@@ -64,7 +64,7 @@
               <p class="login-user text-center">id: <%= current_user.screen_name %></p>
             </li>
             <li>
-              <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-light btn-light-s" %></p>
+              <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', edit_user_path(current_user), remote: true, class: "btn btn-light btn-light-s" %></p>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light btn-light-s" %></p>
             </li>
           <% else %>
