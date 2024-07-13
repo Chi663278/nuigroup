@@ -19,7 +19,7 @@
             <% image_tag 'title_image.png', size: "310x126" %>
           <% end %>
         <% elsif user_signed_in? %>
-          <%= link_to timeline_path(current_user) do %>
+          <%= link_to timeline_path do %>
             <% image_tag 'title_image.png', size: "310x126" %>
           <% end %>
         <% else %>
@@ -52,7 +52,7 @@
               </table>
             </li>
             <li class="menu-list-item">
-              <%= link_to new_post_path, class: "btn btn-light btn-light-post rounded-circle mr-3" do %>
+              <%= link_to new_post_path, remote: true, class: "btn btn-light btn-light-post rounded-circle mr-3" do %>
                 <i class="fa-solid fa-plus"></i>
               <% end %>
             </li>
@@ -64,7 +64,7 @@
               <p class="login-user text-center">id: <%= current_user.screen_name %></p>
             </li>
             <li>
-              <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', edit_user_path(current_user), remote: true, class: "btn btn-light btn-light-s" %></p>
+              <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Edit profile', edit_user_path, remote: true, class: "btn btn-light btn-light-s" %></p>
               <p class="menu-list-item mt-2 mb-2 text-center"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "btn btn-light btn-light-s" %></p>
             </li>
           <% else %>
@@ -82,5 +82,7 @@
       </div>
     </header>
     <%= yield %>
+    <div id="mask" class="hidden"></div>
+    <div id="modal" class="hidden"></div>
   </body>
 </html>

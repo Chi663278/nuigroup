@@ -8,14 +8,21 @@ class Public::CommentsController < ApplicationController
   end
 
   def create
+    @comment = Comment.new
     post = Post.find(params[:post_id])
     comment = post.comments.new(comment_params)
     comment.user = current_user
     if comment.save
-      redirect_to session[:previous_url], notice: 'コメントしました。'
+      respond_to do |format|
+        format.html { redirect_to session[:previous_url], notice: 'コメントしました。' }
+        format.js { redirect_to session[:previous_url], notice: 'コメントしました。' }
+      end
     else
-      flash.now[:notice] = 'コメントに失敗しました。'
-      render :new
+      respond_to do |format|
+        flash.now[:notice] = 'コメントを入力してください。'
+        format.html { render :new }
+        format.js
+      end
     end
   end
 

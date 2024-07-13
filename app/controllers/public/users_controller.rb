@@ -21,12 +21,17 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-    if @user.update(user_params)
-      redirect_to edit_user_path(current_user.id), notice: 'プロフィールを更新しました。'
+    if current_user.update(user_params)
+      respond_to do |format|
+        format.html { redirect_to edit_user_path, notice: 'プロフィールを更新しました。' }
+        format.js { flash.now[:notice] = 'プロフィールを更新しました。' }
+      end
     else
-      flash.now[:notice] = 'プロフィールの更新に失敗しました。'
-      render :edit
+      respond_to do |format|
+        flash.now[:notice] = 'プロフィールの更新に失敗しました。'
+        format.html { render :edit }
+        format.js
+      end
     end
   end
 

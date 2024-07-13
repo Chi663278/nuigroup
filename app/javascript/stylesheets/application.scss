@@ -402,10 +402,14 @@ hr {
   padding: 5px;
 }
 
-
-
 .admin-return {
   margin: 0 auto;
   width: 900px;
   text-align: right;
+}
+
+.modal-content {
+  overflow: scroll;
+  background-color: #E6D0DE;
+  height: 80vh;
 }

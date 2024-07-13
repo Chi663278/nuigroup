@@ -9,17 +9,23 @@ class Public::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to timeline_path(@post), notice: 'ポストしました。'
+      respond_to do |format|
+        format.html { redirect_to timeline_path, notice: 'ポストしました。' }
+        format.js { redirect_to timeline_path, notice: 'ポストしました。' }
+      end
     else
-      flash.now[:notice] = 'ポストに失敗しました。'
-      render :new
+      respond_to do |format|
+        flash.now[:notice] = 'ポストに失敗しました。'
+        format.html { render :new }
+        format.js
+      end
     end
   end
 
   def destroy
     post = Post.find(params[:id])
     post.update!(is_active: false)
-    redirect_back fallback_location: timeline_path(current_user), notice: 'ポストを削除しました。'
+    redirect_back fallback_location: timeline_path, notice: 'ポストを削除しました。'
   end
 
   private
@@ -31,6 +37,6 @@ class Public::PostsController < ApplicationController
   def ensure_user
     @posts = current_user.posts
     @post = @posts.find(params[:id])
-    redirect_to timeline_path(current_user) unless @post
+    redirect_to timeline_path unless @post
   end
 end

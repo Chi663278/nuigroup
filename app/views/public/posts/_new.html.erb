@@ -1,0 +1,42 @@
+<section id="input">
+  <div class="modal-content">
+    <div class="inner-white">
+    <h1>New post</h1>
+    <div class="text-center">
+      <p class="notice"><%= notice %></p>
+      <% if post.errors.any? %>
+        <%= post.errors.count %>件のエラー
+        <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <ul><%= message %></ul>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <p class="login-user">user: <%= current_user.name %> / ID: <%= current_user.screen_name %></p>
+    </div>
+
+    <%= form_with model: post, local: false do |f| %>
+      <div class="field">
+        <%= f.label :image, class: "form-label" %>
+        <span class="btn btn-file btn-info"><%= f.file_field :image, class: "mb-3", accept: "image/*" %>画像選択</span>
+        <div class="text-center"><%= image_tag (post.image.attached? ? post.image : 'noimage.png'), class: "shadow mb-3" %></div>
+      </div>
+
+      <div class="field">
+      <%= f.label :caption, class: "form-label" %>
+      <%= f.text_area :caption, class: "form-control mb-3", autofocus: true, placeholder: "説明文を追加してください(空欄可)" %>
+      </div>
+
+      <div class="actions text-center">
+        <%= f.submit "Save", class: "btn btn-light btn-light-s" %>
+      </div>
+    <% end %>
+
+  </div>
+  </div>
+</section>
+
+
+

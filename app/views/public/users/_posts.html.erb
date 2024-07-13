@@ -21,7 +21,7 @@
 
       <div class="text-right">
         <% if user_signed_in? %>
-          <p><%= link_to 'comment', new_post_comment_path(post), class: "btn btn-light btn-light-ss" %></p>
+          <p><%= link_to 'comment', new_post_comment_path(post), remote: true, class: "btn btn-light btn-light-ss" %></p>
         <% end %>
       </div>
 
