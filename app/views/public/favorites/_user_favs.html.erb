@@ -1,0 +1,8 @@
+<div class="modal-content">
+  <p class="notice"><%= notice %></p>
+  <h1>Favorites</h1>
+  <h4>あなたが Favoriteしたポスト一覧</h4>
+  <section id="input">
+    <%= render 'public/users/posts', posts: @posts, comments: @comments %>
+  </section>
+</div>

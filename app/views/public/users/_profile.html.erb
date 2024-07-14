@@ -4,9 +4,9 @@
   <tr><td>ID: </td><td><%= user.screen_name %></td></tr>
 </table>
 <p class="text-white mt-1 mb-2"><%= user.bio %></p>
-<%= link_to followings_user_path(user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
+<%= link_to followings_user_path(user.screen_name), remote: true, class: "btn btn-light btn-light-bar1 mb-2" do %>
   Following: <%= user.followings.count %>
 <% end %>
-<%= link_to followers_user_path(user.screen_name), class: "btn btn-light btn-light-bar1 mb-2" do %>
+<%= link_to followers_user_path(user.screen_name), remote: true, class: "btn btn-light btn-light-bar1 mb-2" do %>
   Follower: <%= user.followers.count %>
 <% end %>

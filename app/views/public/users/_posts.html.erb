@@ -31,7 +31,7 @@
             <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
             <%= post.favorites.count>1 ? "favorites" : "favorite" %>
             <% if post.favorites.count>0 %>
-              <%= link_to post_favorites_path(post) do %>
+              <%= link_to post_favorites_path(post), remote:true do %>
                 <i class="fa-solid fa-user"></i> favorited by
               <% end %>
             <% end %>
@@ -43,7 +43,7 @@
             <i class="fa-regular fa-heart"></i> <%= post.favorites.count %>
             <%= post.favorites.count>1 ? "Favorites" : "favorite" %>
             <% if post.favorites.count>0 %>
-              <%= link_to post_favorites_path(post) do %>
+              <%= link_to post_favorites_path(post), remote:true do %>
                 <i class="fa-solid fa-user"></i> favorited by
               <% end %>
             <% end %>
