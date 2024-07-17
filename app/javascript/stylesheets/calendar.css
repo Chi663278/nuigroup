@@ -1,0 +1,18 @@
+#calendar {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 20px;
+  font-family: Serif;
+}
+
+.fc .fc-button-primary {
+  font-size: 0.75rem;
+  background-color: #8A456C;
+  color: var(--fc-button-text-color);
+  border: none;
+  border-color: var(--fc-button-border-color);
+  outline: none;
+}

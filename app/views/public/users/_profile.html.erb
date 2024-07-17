@@ -1,7 +1,7 @@
 <p><%= image_tag user.get_user_image(200,200), class: "shadow rounded mb-2" %></p>
 <table class="table-2 author author-2">
   <tr><td>user: </td><td><%= user.name %></td></tr>
-  <tr><td>ID: </td><td><%= user.screen_name %></td></tr>
+  <tr><td>ID: </td><td id="screen_name"><%= user.screen_name %></td></tr>
 </table>
 <p class="text-white mt-1 mb-2"><%= user.bio %></p>
 <%= link_to followings_user_path(user.screen_name), remote: true, class: "btn btn-light btn-light-bar1 mb-2" do %>

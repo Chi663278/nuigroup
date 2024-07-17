@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get 'TL' => 'users#index', as: 'timeline'
+#    get 'TL', to: 'users#index', defaults: { format: 'json' }
     get 'users/:screen_name' => 'users#show', as: 'user_timeline'
     resource :user, only: [:edit, :update, :destroy]
     get 'user/withdraw' => 'users#withdraw'
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       member do
         get :followings, :followers
+        get :events
       end
     end
     resources :posts, only: [:new, :create, :destroy] do

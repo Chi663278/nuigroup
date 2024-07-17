@@ -13,6 +13,9 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "../stylesheets/modal-window.css";
+import "../stylesheets/calendar.css";
+
+import './calendar';
 
 Rails.start()
 Turbolinks.start()

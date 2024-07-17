@@ -9,7 +9,7 @@
         <% end %>
       </div>
       <div>
-        <p class="author mb-2">user: <%= post.user.name %> / id: <%= post.user.screen_name %></p>
+        <p class="author mb-2">user:  <%= post.user.name %><br>id:  <%= post.user.screen_name %></p>
         <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
           <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
         <% end %>
@@ -24,6 +24,8 @@
           <p><%= link_to 'comment', new_post_comment_path(post), remote: true, class: "btn btn-light btn-light-ss" %></p>
         <% end %>
       </div>
+
+      <p class="text-right">posted at:  <%= l post.created_at, format: :short %></p>
 
       <% if post.favorited_by?(current_user) %>
         <p>
@@ -56,7 +58,7 @@
           <hr class="line1">
           <div class="content-row">
             <div class="content-column ml-3">
-              <p class="author mb-2">user: <%= comment.user.name %><br>id: <%= comment.user.screen_name %></p>
+              <p class="author mb-2">user:  <%= comment.user.name %><br>id:  <%= comment.user.screen_name %></p>
               <p>
                 <%= link_to user_timeline_path(screen_name: comment.user.screen_name) do %>
                   <%= image_tag comment.user.get_user_image(80,80), class: "shadow rounded mb-4" %>
@@ -68,10 +70,14 @@
                 <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
               <% end %>
           </div>
+
+          <p class="text-right">commented at:  <%= l comment.created_at, format: :short %></p>
+
         <% end %>
       <% end %>
     </div>
   <% end %>
+  
 <% else %>
   <div class="inner-white-l">
     <p class="text-center">まだ投稿がありません。</p><br>
