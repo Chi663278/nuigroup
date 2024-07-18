@@ -26,6 +26,10 @@
     <% end %>
   </div>
 
+  <div class="inner-magenta-2 text-center">
+    <%= render 'calendar', posts: @posts %>
+  </div>
+
   <section id="input">
     <h1><%= @user.name %>'s Timeline</h1>
     <%= render 'posts', posts: @posts, comments: @comments %>
