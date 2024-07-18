@@ -2,7 +2,7 @@
 
 <section class="user">
   <div>
-    <div class="inner-magenta text-center">
+    <div class="inner-profile text-center">
       <%= render 'profile', user: @user %>
 
       <% if @user == current_user %>
@@ -27,7 +27,7 @@
       <% end %>
     </div>
 
-    <div class="inner-magenta-2 text-center">
+    <div class="inner-calendar text-center">
       <%= render 'calendar', posts: @posts %>
     </div>
   </div>
