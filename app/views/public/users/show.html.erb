@@ -1,37 +1,39 @@
 <p class="notice"><%= notice %></p>
 
 <section class="user">
-  <div class="inner-magenta text-center">
-    <%= render 'profile', user: @user %>
+  <div>
+    <div class="inner-magenta text-center">
+      <%= render 'profile', user: @user %>
 
-    <% if @user == current_user %>
-      <div class="d-flex justify-content-center">
-        <%= link_to edit_user_path(@user), remote: true, class: "btn btn-light btn-light-bar2 mb-2 mr-2" do %>
-          <i class="fa-solid fa-gear"></i> Edit
-        <% end %>
-        <%= link_to user_favs_path(@user), remote: true, class: "btn btn-light btn-light-bar2 mb-2" do %>
-          <i class="fa-solid fa-heart"></i> Favs
-        <% end %>
-      </div>
-    <% else %>
-      <% if @user.is_followed_by?(current_user) %>
-        <%= link_to user_relationships_path(@user.screen_name), method: :delete, data: { confirm: '本当にフォローをやめますか？' }, class: "btn btn-light btn-light-bar1 mb-2" do %>
-          <i class="fa-solid fa-minus"></i></i> Unfollow
-        <% end %>
+      <% if @user == current_user %>
+        <div class="d-flex justify-content-center">
+          <%= link_to edit_user_path(@user), remote: true, class: "btn btn-light btn-light-bar2 mb-2 mr-2" do %>
+            <i class="fa-solid fa-gear"></i> Edit
+          <% end %>
+          <%= link_to user_favs_path(@user), remote: true, class: "btn btn-light btn-light-bar2 mb-2" do %>
+            <i class="fa-solid fa-heart"></i> Favs
+          <% end %>
+        </div>
       <% else %>
-        <%= link_to user_relationships_path(@user.screen_name), method: :post, data: { confirm: 'ユーザーをフォローしますか？' }, class: "btn btn-light btn-light-bar1 mb-2" do %>
-          <i class="fa-solid fa-plus"></i> Follow
+        <% if @user.is_followed_by?(current_user) %>
+          <%= link_to user_relationships_path(@user.screen_name), method: :delete, data: { confirm: '本当にフォローをやめますか？' }, class: "btn btn-light btn-light-bar1 mb-2" do %>
+            <i class="fa-solid fa-minus"></i></i> Unfollow
+          <% end %>
+        <% else %>
+          <%= link_to user_relationships_path(@user.screen_name), method: :post, data: { confirm: 'ユーザーをフォローしますか？' }, class: "btn btn-light btn-light-bar1 mb-2" do %>
+            <i class="fa-solid fa-plus"></i> Follow
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
+
+    <div class="inner-magenta-2 text-center">
+      <%= render 'calendar', posts: @posts %>
+    </div>
   </div>
 
-  <div class="inner-magenta-2 text-center">
-    <%= render 'calendar', posts: @posts %>
-  </div>
-
-  <section id="input">
+  <div id="input">
     <h1><%= @user.name %>'s Timeline</h1>
     <%= render 'posts', posts: @posts, comments: @comments %>
-  </section>
+  </div>
 </section>
