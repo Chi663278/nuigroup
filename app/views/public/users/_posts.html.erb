@@ -77,10 +77,12 @@
       <% end %>
     </div>
   <% end %>
-  
+
 <% else %>
   <div class="inner-white-l">
     <p class="text-center">まだ投稿がありません。</p><br>
     <p class="text-center">ヘッダーの <i class="fa-solid fa-plus"></i> ボタンを押すと投稿できるよ！</p>
   </div>
 <% end %>
+
+<%= paginate posts %>

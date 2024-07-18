@@ -3,12 +3,12 @@ class Public::UsersController < ApplicationController
 
   def index
     user_ids = current_user.followings.only_active + [current_user.id]
-    @posts = Post.only_active.where(user_id: user_ids).order(created_at: :desc)
+    @posts = Post.only_active.where(user_id: user_ids).order(created_at: :desc).page(params[:page])
     @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
-#    respond_to do |format|
-#     format.html
-#     format.json { render 'calendar' }
-#    end
+    respond_to do |format|
+     format.html
+     format.json { render 'calendar' }
+    end
   end
 
   def events
@@ -23,7 +23,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.only_active.find_by(screen_name: params[:screen_name])
     if @user
-      @posts = Post.only_active.where(user_id: @user.id).order(created_at: :desc)
+      @posts = Post.only_active.where(user_id: @user.id).order(created_at: :desc).page(params[:page])
       @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
     else
       redirect_to timeline_path, notice: 'ユーザーが存在しません。'

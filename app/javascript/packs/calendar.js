@@ -8,27 +8,27 @@ document.addEventListener('DOMContentLoaded', function() {
   var calendar = new Calendar(calendarEl, {
     plugins: [dayGridPlugin, listPlugin],
     initialView: 'listMonth',
-    events: '/users/' + screen_name +'/events.json',
+    events: '/users/'+ screen_name +'/events.json',
     eventContent: function(arg) {
-      let arrayOfDomNodes = []
+      let arrayOfDomNodes = [];
       // title event
-      let titleEvent = document.createElement('div')
+      let titleEvent = document.createElement('div');
       if(arg.event._def.title) {
-        titleEvent.innerHTML = arg.event._def.title
-        titleEvent.classList = "fc-event-title fc-sticky"
+        titleEvent.innerHTML = arg.event._def.title;
+        titleEvent.classList = "fc-event-title fc-sticky";
       }
 
       // image event
-      let imgEventWrap = document.createElement('div')
-      if(arg.event.extendedProps.img) {
-        let imgEvent = '<img class="photo" src="'+arg.event.extendedProps.img+'" >'
+      let imgEventWrap = document.createElement('div');
+      if(arg.event._def.extendedProps.img) {
+        let imgEvent = '<img src="'+ arg.event._def.extendedProps.img +'" >';
         imgEventWrap.innerHTML = imgEvent;
-        imgEventWrap.classList = "fc-event-img"
+        imgEventWrap.classList = "fc-event-img";
       }
 
-      arrayOfDomNodes = [ titleEvent,imgEventWrap ]
+      arrayOfDomNodes = [ titleEvent,imgEventWrap ];
 
-      return { domNodes: arrayOfDomNodes }
+      return { domNodes: arrayOfDomNodes };
     },
   });
 
