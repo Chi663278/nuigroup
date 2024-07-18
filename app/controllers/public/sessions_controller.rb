@@ -18,7 +18,7 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
   def reject_user
-    @user = User.find_by!(screen_name: params[:user][:screen_name])
+    @user = User.find_by(screen_name: params[:user][:screen_name])
     return if @user.nil?
     return unless @user.valid_password?(params[:user][:password])
     if @user.is_active == false
