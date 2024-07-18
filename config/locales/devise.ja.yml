@@ -1,8 +1,9 @@
 ja:
   devise:
     failure:
-      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      invalid: "IDとパスワードを入力してください。"
       not_found_in_database: "ID またはパスワードが無効です。"
+      inactive: "ユーザーは退会済みです。再度Sign upしてください。"
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
