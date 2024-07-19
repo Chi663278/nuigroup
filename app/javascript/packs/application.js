@@ -14,6 +14,7 @@ import "bootstrap";
 import "../stylesheets/application";
 import "../stylesheets/modal-window.css";
 import "../stylesheets/calendar.css";
+import "../stylesheets/kaminari.css";
 
 import './calendar';
 

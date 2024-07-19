@@ -1,0 +1,30 @@
+.pagination {
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 20px;
+}
+.pagination span {
+  text-align: center;
+  width: 50px;
+  transition: .3s;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  font-weight: normal;
+}
+
+.pagination span a {
+  text-decoration: underline;
+}
+
+.pagination span:hover {
+  transition: .3s;
+  transform: scale(1.1);
+}
+
+.pagination span a:hover {
+  transition: .3s;
+  transform: scale(1.1);
+  text-decoration: none;
+}
