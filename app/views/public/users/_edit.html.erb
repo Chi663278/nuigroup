@@ -14,7 +14,7 @@
         <% end %>
       </div>
       <div class="text-center">
-        <%= image_tag current_user.get_user_image(300,300), class: "rounded shadow mb-3" %>
+        <div id="new-image" class="text-center"><%= image_tag current_user.get_user_image(300,300), class: "new-img rounded shadow mb-3" %></div>
         <p class="login-user">user: <%= current_user.name %> / ID: <%= current_user.screen_name %></p>
       </div>
 
