@@ -28,6 +28,10 @@ class Public::PostsController < ApplicationController
     redirect_back fallback_location: timeline_path, notice: 'ポストを削除しました。'
   end
 
+  def preview
+    respond_to format.js { render '/app/javascript/packs/preview.js' }
+  end
+
   private
 
   def post_params

@@ -17,8 +17,6 @@ import "../stylesheets/kaminari.css";
 
 import './calendar';
 
-import './preview';
-
 
 Rails.start()
 Turbolinks.start()
