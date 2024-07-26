@@ -5,8 +5,6 @@ ja:
       inactive: "ユーザーは退会済みです。再度Sign upしてください。"
       invalid: "IDとパスワードを入力してください。"
       not_found_in_database: "ID またはパスワードが無効です。"
-      admin:
-        already_authenticated: "すでにログイン済みです。"
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
