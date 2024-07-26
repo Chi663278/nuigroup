@@ -4,12 +4,15 @@ class Public::FavoritesController < ApplicationController
   def index #ポスト別 Favorites
     favorites = Favorite.where(post_id: params[:post_id]).pluck(:user_id)
     @users = User.only_active.where(id: favorites)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def user_favs #ユーザ別 Favorites
     favorites = Favorite.where(user_id: current_user.id).pluck(:post_id)
     @posts = Post.only_active.where(id: favorites).order(created_at: :desc)
-    @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
   end
 
   def create

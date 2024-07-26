@@ -1,8 +1,48 @@
 <div class="modal-content">
-  <p class="notice"><%= notice %></p>
   <h1>Favorites</h1>
   <h4>あなたが Favoriteしたポスト一覧</h4>
+
   <section id="input">
-    <%= render 'public/users/posts', posts: @posts, comments: @comments %>
+
+  <div class="mask hidden"></div>
+  <div class="modal hidden"></div>
+
+  <% if posts.present? %>
+    <% posts.each do |post| %>
+      <div class="inner-white-l">
+        <div>
+          <p class="author mb-2">user:  <%= post.user.name %><br>id:  <%= post.user.screen_name %></p>
+          <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
+            <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
+          <% end %>
+        </div>
+        <div class="text-center">
+          <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
+          <div class="text-justify"><p class="text"><%= post.caption %></p></div>
+        </div>
+
+        <p class="text-right">posted at:  <%= l post.created_at, format: :short %></p>
+
+        <p>
+          <i class="fa-solid fa-heart"></i> <%= post.favorites.count %>
+          <%= post.favorites.count>1 ? "favorites" : "favorite" %>
+          <% if post.favorites.count>0 %>
+            <%= link_to post_favorites_path(post), remote:true do %>
+              <i class="fa-solid fa-user"></i> favorited by
+            <% end %>
+          <% end %>
+        </p>
+
+      </div>
+    <% end %>
+
+  <% else %>
+    <div class="inner-white-l">
+      <p class="text-center">まだ投稿がありません。</p><br>
+      <p class="text-center">ヘッダーの <i class="fa-solid fa-plus"></i> ボタンを押すと投稿できるよ！</p>
+    </div>
+  <% end %>
+
   </section>
+
 </div>
