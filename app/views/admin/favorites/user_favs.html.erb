@@ -9,19 +9,18 @@
     <tr>
       <th>イメージ</th>
       <th>投稿ID</th>
-
       <th>Favorite ID</th>
     </tr>
   </thead>
   <tbody>
     <% @favorites.each do |favorite| %>
       <tr>
+        <td><%= image_tag favorite.post.get_post_image(80,80) %></td>
         <td>
-          <%= link_to admin_post_path(favorite.post_id) do%>
+          <%= link_to admin_post_path(favorite.post_id) do %>
             <%= favorite.post_id %>
           <% end %>
         </td>
-        <td><%= image_tag favorite.post.get_post_image(80,80) %></td>
         <td><%= favorite.id %></td>
       </tr>
     <% end %>
