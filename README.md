@@ -34,7 +34,7 @@ Webアプリケーション開発の勉強をする内に、ぬいぐるみ好�
 
 - ぬいぐるみの写真が見たい人
 
-- これからぬい撮りを始めようとしていて、参考写真が見たい人
+- これからぬい撮りを始めようとしていて、参考写真を探している人
 
 ​
 
@@ -50,7 +50,7 @@ Webアプリケーション開発の勉強をする内に、ぬいぐるみ好�
 
 ## :bear:設計書:bear:
 
-後ほど作成予定
+[nuigroup_アプリケーション詳細設計書(googleスプレッドシート)](https://docs.google.com/spreadsheets/d/1FppKe4unykNJBUQyikt3S1rE8F4vI3Cs/edit?usp=sharing&ouid=113764115096884807232&rtpof=true&sd=true)
 
 ​
 
