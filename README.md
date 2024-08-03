@@ -56,7 +56,7 @@ Webアプリケーション開発の勉強をする内に、ぬいぐるみ好�
 
 ## :bear:開発環境:bear:
 
-- OS：Linux(CentOS)
+- OS：Linux(Amazon Linux release 2023)
 
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 
