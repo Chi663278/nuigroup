@@ -70,5 +70,5 @@ Webアプリケーション開発の勉強をする内に、ぬいぐるみ好�
 
 ## :bear:使用素材:bear:
 
-- イラスト・ロゴ　自作
+- イラスト・ロゴ : 自作
 （使用ツール：Adobe Photoshop CS4, CLIP STUDIO）
