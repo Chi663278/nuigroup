@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
 
   def index
     user_ids = current_user.followings.only_active + [current_user.id]
+    @post = Post.new
     @posts = Post.only_active.where(user_id: user_ids).order(created_at: :desc).page(params[:page])
     @comments = Comment.only_active.where(post_id: @posts.pluck(:id)).order(created_at: :asc)
     respond_to do |format|
