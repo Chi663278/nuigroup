@@ -17,7 +17,7 @@
       <p class="login-user">user: <%= current_user.name %> / ID: <%= current_user.screen_name %></p>
     </div>
 
-    <%= form_with model: post, local: false do |f| %>
+    <%= form_with model: post do |f| %>
       <div class="field">
         <%= f.label :image, class: "form-label" %>
         <span class="btn btn-file btn-info"><%= f.file_field :image, class: "mb-3", accept: "image/*" %>画像選択</span>
