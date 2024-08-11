@@ -12,7 +12,7 @@ mask.addEventListener('click', () => {
   });
 
 
-const createImageHTML = (blob) => {
+var createImageHTML = (blob) => {
   const imageElement = document.getElementById('new-image');
   const blobImage = document.createElement('img');
   blobImage.setAttribute('class', 'new-img rounded shadow mb-3');
