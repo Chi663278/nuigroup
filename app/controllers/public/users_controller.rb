@@ -36,6 +36,7 @@ class Public::UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
+      sleep(3)
       respond_to do |format|
         format.html { redirect_to edit_user_path, notice: 'プロフィールを更新しました。' }
         format.js { flash.now[:notice] = 'プロフィールを更新しました。' }
