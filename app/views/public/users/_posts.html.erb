@@ -14,11 +14,11 @@
       <div>
         <p class="author mb-2">user:  <%= post.user.name %><br>id:  <%= post.user.screen_name %></p>
         <%= link_to user_timeline_path(screen_name: post.user.screen_name) do %>
-          <%= image_tag post.user.image, class: "shadow rounded mb-4" %>
+          <%= image_tag post.user.get_user_image(100,100), class: "shadow rounded mb-4" %>
         <% end %>
       </div>
       <div class="text-center">
-        <p><%= image_tag post.image, class: "shadow rounded mb-3" %></p>
+        <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
         <div class="text-justify"><p class="text"><%= post.caption %></p></div>
       </div>
 
