@@ -7,10 +7,10 @@
 
       <% if @user == current_user %>
         <div class="d-flex justify-content-center">
-          <%= link_to edit_user_path(@user), remote: true, class: "btn btn-light btn-light-bar2 mb-2 mr-2" do %>
+          <%= link_to edit_user_path, remote: true, class: "btn btn-light btn-light-bar2 mb-2 mr-2" do %>
             <i class="fa-solid fa-gear"></i> Edit
           <% end %>
-          <%= link_to user_favs_path(@user), remote: true, class: "btn btn-light btn-light-bar2 mb-2" do %>
+          <%= link_to user_favs_path, remote: true, class: "btn btn-light btn-light-bar2 mb-2" do %>
             <i class="fa-solid fa-heart"></i> Favs
           <% end %>
         </div>
