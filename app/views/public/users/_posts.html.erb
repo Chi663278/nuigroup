@@ -19,7 +19,7 @@
       </div>
       <div class="text-center">
         <p><%= image_tag post.get_post_image(500,500), class: "shadow rounded mb-3" %></p>
-        <div class="text-justify"><p class="text"><%= post.caption %></p></div>
+        <div class="text-left"><p class="text"><%= simple_format(post.caption, sanitize: true, class: "overflow-word") %></p></div>
       </div>
 
       <div class="text-right">
@@ -68,10 +68,12 @@
                 <% end %>
               </p>
             </div>
-              <p class="text"><%= comment.comment %></p>
-              <% if comment.user == current_user %>
-                <%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %>
-              <% end %>
+          </div>
+          <div class="text-left"><p class="text"><%= simple_format(comment.comment, sanitize: true, class: "overflow-word") %></p></div>
+          <div class="text-right">
+            <% if comment.user == current_user %>
+              <p><%= link_to 'delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-light btn-light-ss" %></p>
+            <% end %>
           </div>
 
           <p class="text-right">commented at:  <%= l comment.created_at, format: :short %></p>
