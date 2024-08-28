@@ -10,3 +10,7 @@ mask.addEventListener('click', () => {
   modal.classList.add('hidden');
   mask.classList.add('hidden');
   });
+
+<% unless current_user.errors.any? %>
+  window.location.reload();
+<% end %>
