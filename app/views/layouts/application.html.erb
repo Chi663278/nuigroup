@@ -38,8 +38,8 @@
             </li>
           <% elsif user_signed_in? %>
             <li class="menu-list-item align-self-end">
-              <table class="align-items-start">
-                <%= form_with url: search_path, local: true, method: :get do |f| %>
+              <%= form_with url: search_path, local: true, method: :get do |f| %>
+                <table class="align-items-start">
                   <tr>
                     <td><%= f.label :category, "検索項目 :" %></td>
                     <td><%= f.select :category, options_for_select([['ユーザーID', 'screen_name'],['ユーザー名','user'],['投稿','post']]), {include_blank: "選択してください"}, {class: 'form-control btn btn-light dropdown-toggle'} %></td>
@@ -48,8 +48,8 @@
                     <td class="pr-2 "><%= f.label :query, "検索ワード :" %></td>
                     <td><%= f.text_field :query, placeholder: "キーワードを入力", class: "form-control" %><%= f.submit "Search", class: "btn btn-light btn-light-ss" %></td>
                   </tr>
-                <% end %>
-              </table>
+                </table>
+              <% end %>
             </li>
             <li class="menu-list-item">
               <%= link_to new_post_path, remote: true, class: "btn btn-light btn-light-post rounded-circle mr-3" do %>
